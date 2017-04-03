@@ -4,7 +4,7 @@ class ApplicationController < Sinatra::Base
 
 	ActiveRecord::Base.establish_connection(
 		:adapter => 'postgresql',
-		:database => ''
+		:database => 'moodtracker'
 	)
 
 	not_found do
