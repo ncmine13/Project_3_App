@@ -5,15 +5,15 @@ var source = require('vinyl-source-stream');
 var watch = require('gulp-watch');
 
 gulp.task('react', function(){
-return browserify('./clientReact/main.js')
+return browserify('./client/clientReact/main.js')
         .transform('babelify', {presets: ["react"]})
         .bundle()
         .pipe(source('build.js'))
-        .pipe(gulp.dest('./scripts/build'))
+        .pipe(gulp.dest('./server/public/js/build'))
 })
 
 gulp.task('watch', function(){
-  gulp.watch(['./clientReact/*.js'], ['react'])
+  gulp.watch(['./client/clientReact/*.js'], ['react'])
 })
 
 gulp.task('default', ['react', 'watch'])

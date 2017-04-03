@@ -1,1 +1,8 @@
+<%= @message %>
+
 <h1>This is the login page</h1>
+<form action="/home/login" method="POST">
+	<input type="text" name="username" placeholder="Username"/>
+	<input type="password" name="password" placeholder="Password"/>
+	<button>Log in!</button>
+</form>

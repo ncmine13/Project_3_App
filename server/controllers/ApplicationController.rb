@@ -1,4 +1,6 @@
 class ApplicationController < Sinatra::Base
+	enable :sessions
+
 	require 'bundler'
 	Bundler.require
 
@@ -6,6 +8,10 @@ class ApplicationController < Sinatra::Base
 		:adapter => 'postgresql',
 		:database => 'moodtracker'
 	)
+
+	set :views, File.expand_path('../../views', __FILE__)
+	set :public_dir, File.expand_path('../../public', __FILE__)
+	set :session_secret, 'test'
 
 	not_found do
 		"Page Not Found"
