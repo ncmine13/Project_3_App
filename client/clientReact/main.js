@@ -1,6 +1,7 @@
-var React = require('react')
-var ReactDOM = require('react-dom')
-var request = require('superagent')
+var React = require('react');
+var ReactDOM = require('react-dom');
+var request = require('superagent');
+
 
 //store everything in main component states. make ajax call from here. submit on final component, which will call the ajax request in maincomponent
 //clicking next set      s state
@@ -35,8 +36,19 @@ var MainComponent = React.createClass({
 		state.best = best;
 		this.setState(state);
 	},
-	worryInfo: function(){
-
+	worryInfo: function(pageFour, worry){
+		var state = this.state;
+		state.page.pageThree = false;
+		state.page.pageFour = pageFour;
+		state.worry = worry;
+		this.setState(state);
+	},
+	confidenceInfo: function(pageFive, confidence){
+		var state = this.state;
+		state.page.pageFour = false;
+		state.page.pageFive = pageFive;
+		state.confidence = confidence;
+		this.setState(state);
 	},
 	render: function(){
 		//post request with the button click will send the entries to the database
@@ -54,6 +66,10 @@ var MainComponent = React.createClass({
 		} else if (page.pageThree) {
 			return (
 				<FourthScreen worryInfo={this.worryInfo}/>
+			)
+		} else if (page.pageFour) {
+			return (
+				<FifthScreen confidenceInfo={this.confidenceInfo}/>
 			)
 		} else {
 			return (
@@ -162,7 +178,30 @@ var FourthScreen = React.createClass({
 			</div>
 		)
 	}
+});
 
+var FifthScreen = React.createClass({
+	getInitialState: function(){
+		return {confidence: 0}
+	},
+	//add limitation on number of digits, i.e. make sure the number is from one to ten
+	handleConfidenceInput: function(e){
+		var state = this.state;
+		state.confidence = e.target.value;
+		this.setState(state);
+	},
+	handleConfidence: function(){
+		this.props.confidenceInfo(true, this.state.confidence)
+	},
+	render: function(){
+		return (
+			<div>
+				<h1>On a scale of 1 to 10, how confident do you feel?</h1>
+				<input type="number" onChange={this.handleConfidenceInput} name="confidence" value={this.state.condfidence}/>
+				<button onClick={this.handleConfidence}>Next</button>
+			</div>
+		)
+	}
 })
 
 ReactDOM.render(<MainComponent/>, document.getElementById('container'));
