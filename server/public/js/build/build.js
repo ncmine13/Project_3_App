@@ -11,32 +11,47 @@ var MainComponent = React.createClass({
 
 	//organize pages into whatPage function or something like that, with each page as either boolean or string value to better organize switch statement in render
 	getInitialState: function () {
-		return { loggedIn: true, page1: false, username: '', word1: '', word2: '', word3: '', worst: '', best: '', worry: '', confidence: 0,
-			satisfaction: 0, stress: 0, sadness: 0, anger: 0, happiness: 0, funny: 0, thing1: '', thing2: '', thing3: '' };
+		return { loggedIn: true, username: '', word1: '', word2: '', word3: '', worst: '', best: '', worry: '',
+			confidence: 0, satisfaction: 0, stress: 0, sadness: 0, anger: 0, happiness: 0, funny: 0, thing1: '', thing2: '', thing3: '',
+			page: { pageOne: false, pageTwo: false, pageThree: false, pageFour: false, pageFive: false, pageSix: false, pageSeven: false, pageEight: false, pageNine: false, pageTen: false, pageEleven: false, pageTwelve: false, pageThirteen: false } };
 	},
-	firstPageInfo: function (pageInfo, word) {
+	//cycle through pages: first time event listener runs, make pageOne true. second time,
+	firstPageInfo: function (pageOne, word) {
 		var state = this.state;
-		state.page1 = pageInfo;
+		state.page.pageOne = pageOne;
 		state.word1 = word.word1;
 		state.word2 = word.word2;
 		state.word3 = word.word3;
 		this.setState(state);
 	},
-	handlePage: function () {
-		//if page is this, change it to this. if it's this, make it this.
+	worstInfo: function (pageTwo, worst) {
+		var state = this.state;
+		state.page.pageOne = false;
+		state.page.pageTwo = pageTwo;
+		state.worst = worst;
+		this.setState(state);
 	},
+	bestInfo: function (pageThree, best) {
+		var state = this.state;
+		state.page.pageTwo = false;
+		state.page.pageThree = pageThree;
+		state.best = best;
+		this.setState(state);
+	},
+	worryInfo: function () {},
 	render: function () {
 		//post request with the button click will send the entries to the database
 		//if page1 is false, render FirstScreen, else if page1 = true and page2 = false, render next screen
-		var page1 = this.state.page1;
-		if (page1) {
-			return React.createElement(SecondScreen, null);
+		//switch statement
+		var page = this.state.page;
+		if (page.pageOne) {
+			return React.createElement(SecondScreen, { worstInfo: this.worstInfo });
+		} else if (page.pageTwo) {
+			return React.createElement(ThirdScreen, { bestInfo: this.bestInfo });
+		} else if (page.pageThree) {
+			return React.createElement(FourthScreen, { worryInfo: this.worryInfo });
 		} else {
-			return React.createElement(
-				'div',
-				null,
-				React.createElement(FirstScreen, { firstPageInfo: this.firstPageInfo })
-			);
+			return React.createElement(FirstScreen, { firstPageInfo: this.firstPageInfo });
 		}
 	}
 });
@@ -57,7 +72,6 @@ var FirstScreen = React.createClass({
 		this.props.firstPageInfo(true, this.state);
 	},
 	render: function () {
-		//switch statement
 		return React.createElement(
 			'div',
 			null,
@@ -84,6 +98,15 @@ var SecondScreen = React.createClass({
 	getInitialState: function () {
 		return { worst: '' };
 	},
+	handleWorstInput: function (e) {
+		var state = this.state;
+		state.worst = e.target.value;
+		this.setState(state);
+	},
+	handleWorst: function () {
+		console.log(this.props);
+		this.props.worstInfo(true, this.state.worst);
+	},
 	render: function () {
 		console.log(this.props);
 		return React.createElement(
@@ -93,9 +116,84 @@ var SecondScreen = React.createClass({
 				'h1',
 				null,
 				'What bummed you out today?'
+			),
+			React.createElement('input', { onChange: this.handleWorstInput, name: 'worst', value: this.state.worst }),
+			React.createElement(
+				'button',
+				{ onClick: this.handleWorst },
+				'Next'
 			)
 		);
 	}
+});
+
+var ThirdScreen = React.createClass({
+	displayName: 'ThirdScreen',
+
+	getInitialState: function () {
+		return { best: '' };
+	},
+	handleBestInput: function (e) {
+		var state = this.state;
+		state.best = e.target.value;
+		this.setState(state);
+	},
+	handleBest: function () {
+		console.log(this.props);
+		this.props.bestInfo(true, this.state.best);
+	},
+	render: function () {
+		console.log(this.props);
+		return React.createElement(
+			'div',
+			null,
+			React.createElement(
+				'h1',
+				null,
+				' Describe the best thing that happened to you today. '
+			),
+			React.createElement('input', { onChange: this.handleBestInput, name: 'best', value: this.state.best }),
+			React.createElement(
+				'button',
+				{ onClick: this.handleBest },
+				'Next'
+			)
+		);
+	}
+});
+
+var FourthScreen = React.createClass({
+	displayName: 'FourthScreen',
+
+	getInitialState: function () {
+		return { worry: '' };
+	},
+	handleWorryInput: function (e) {
+		var state = this.state;
+		state.worry = e.target.value;
+		this.setState(state);
+	},
+	handleWorry: function () {
+		this.props.worryInfo(true, this.state.worry);
+	},
+	render: function () {
+		return React.createElement(
+			'div',
+			null,
+			React.createElement(
+				'h1',
+				null,
+				'What is one thing you\u2019re worried about? '
+			),
+			React.createElement('input', { onChange: this.handleWorryInput, name: 'worry', value: this.state.worry }),
+			React.createElement(
+				'button',
+				{ onClick: this.handleWorry },
+				'Next'
+			)
+		);
+	}
+
 });
 
 ReactDOM.render(React.createElement(MainComponent, null), document.getElementById('container'));
