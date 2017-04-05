@@ -51,3 +51,50 @@ body .submit {
   border-radius: 10px;
   font-size: 50px;
 }
+body .week {
+  margin-right: 2.5%;
+}
+body .week .day {
+  float: right;
+  margin: 10px;
+  width: 150px;
+  height: 100px;
+  border-radius: 5px;
+  background-color: #113F40;
+}
+body .week .day h2 {
+  color: #B4A454;
+  font-size: 24px;
+  text-align: center;
+}
+body .week .day .check {
+  margin-left: 44%;
+}
+body .checkIn {
+  background-color: #B4A454;
+  color: #113F40;
+  width: 200px;
+  border: none;
+  height: 91px;
+  font-size: 40px;
+  border-radius: 5px;
+  padding: 20px;
+  margin-left: 40%;
+  margin-top: 40px;
+}
+body .test {
+  background-color: #B4A454;
+  color: #113F40;
+  width: 200px;
+  border: none;
+  height: 91px;
+  font-size: 40px;
+  border-radius: 5px;
+  padding: 20px;
+  margin-left: 40%;
+  margin-top: 40px;
+}
+body button:hover {
+  transform: scale(1.025);
+  transition: all .2s;
+}

@@ -6,11 +6,21 @@
 	</head>
 	<body>
 		<!-- only show button if you haven't checked in yet today -->
-		<h1>Welcome home</h1>
-		<a href="/home"><button>Check in</button></a>
-
-
-		<h1>Post made, temp home 2</h1>
+		<a href="/home/logout">Log out!</a>
+		<h1>Welcome home, <%= @username %>.</h1>
+		<div class="week">
+			<div class="day"><h2>Monday</h2><input type="checkbox" class="check"/>
+			<input type="hidden" name="dayValue" value="0">
+			</div>
+			<div class="day"><h2>Tuesday</h2><input type="checkbox" class="check"/></div>
+			<div class="day"><h2>Wednesday</h2><input type="checkbox" class="check"/></div>
+			<div class="day"><h2>Thursday</h2><input type="checkbox" class="check"/></div>
+			<div class="day"><h2>Friday</h2><input type="checkbox" class="check"/></div>
+			<div class="day"><h2>Saturday</h2><input type="checkbox" class="check"/></div>
+			<div class="day"><h2>Sunday</h2><input type="checkbox" class="check"/></div>
+		</div>
+		<a href="/home"><button class="checkIn">Check in</button></a>
+		<button class="test">Clickme</button>
 		<script src="/js/app/app.js"></script>
 	</body>
 </html>

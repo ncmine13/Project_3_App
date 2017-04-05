@@ -51,6 +51,8 @@ class HomeController < ApplicationController
 			session[:logged_in] = true
 			session[:username] = username
 			session[:user_id] = user.id
+			#query database for postSubmitted value
+			binding.pry
 			p session
 
 			redirect '/home/cal'
