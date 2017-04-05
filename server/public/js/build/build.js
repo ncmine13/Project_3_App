@@ -9,13 +9,12 @@ var request = require('superagent');
 var MainComponent = React.createClass({
 	displayName: 'MainComponent',
 
-	//organize pages into whatPage function or something like that, with each page as either boolean or string value to better organize switch statement in render
+
 	getInitialState: function () {
 		return { loggedIn: true, username: '', word1: '', word2: '', word3: '', worst: '', best: '', worry: '',
 			confidence: 0, satisfaction: 0, stress: 0, sadness: 0, anger: 0, happiness: 0, funny: 0, thing1: '', thing2: '', thing3: '',
-			page: '' };
+			page: '', finished: false };
 	},
-	//cycle through pages: first time event listener runs, make pageOne true. second time,
 	firstPageInfo: function (page, word) {
 		var state = this.state;
 		state.page = page;
@@ -24,65 +23,11 @@ var MainComponent = React.createClass({
 		state.word3 = word.word3;
 		this.setState(state);
 	},
-	worstInfo: function (page, worst) {
+	mostInfo: function (page, prop) {
 		var state = this.state;
+		var key = Object.keys(prop)[0];
+		state[key] = prop[key];
 		state.page = page;
-		state.worst = worst;
-		state[worst] = worst;
-		this.setState(state);
-	},
-	bestInfo: function (page, best) {
-		var state = this.state;
-		state.page = page;
-		state.best = best;
-		this.setState(state);
-	},
-	worryInfo: function (page, worry) {
-		var state = this.state;
-		state.page = page;
-		state.worry = worry;
-		this.setState(state);
-	},
-	confidenceInfo: function (page, confidence) {
-		var state = this.state;
-		state.page = page;
-		state.confidence = confidence;
-		this.setState(state);
-	},
-	satisfactionInfo: function (page, satisfaction) {
-		var state = this.state;
-		state.page = page;
-		state.satisfaction = satisfaction;
-		this.setState(state);
-	},
-	stressInfo: function (page, stress) {
-		var state = this.state;
-		state.page = page;
-		state.stress = stress;
-		this.setState(state);
-	},
-	sadnessInfo: function (page, sadness) {
-		var state = this.state;
-		state.page = page;
-		state.sadness = sadness;
-		this.setState(state);
-	},
-	angerInfo: function (page, anger) {
-		var state = this.state;
-		state.page = page;
-		state.anger = anger;
-		this.setState(state);
-	},
-	happinessInfo: function (page, happiness) {
-		var state = this.state;
-		state.page = page;
-		state.happiness = happiness;
-		this.setState(state);
-	},
-	funnyInfo: function (page, funny) {
-		var state = this.state;
-		state.page = page;
-		state.funny = funny;
 		this.setState(state);
 	},
 	thingInfo: function (page, thing) {
@@ -91,33 +36,45 @@ var MainComponent = React.createClass({
 		state.thing1 = thing.thing1;
 		state.thing2 = thing.thing2;
 		state.thing3 = thing.thing3;
+		state.finished = true;
 		this.setState(state);
 	},
+	postInformation: function () {
+		console.log('gonna make an ajax call about now');
+		var state = this.state;
+		var self = this;
+		request.post('http://localhost:9393/mood').type('form').send(self.state).end(function (err, data) {
+			console.log(data.body);
+			window.location = '/home/cal';
+		});
+	},
+	componentWillUpdate: function () {
+		this.state.finished ? this.postInformation() : false;
+	},
 	render: function () {
-		//post request with the button click will send the entries to the database
-		//if page1 is false, render FirstScreen, else if page1 = true and page2 = false, render next screen
-		//switch statement
+		console.log(this.state);
+
 		switch (this.state.page) {
 			case 'pageOne':
-				return React.createElement(SecondScreen, { worstInfo: this.worstInfo });
+				return React.createElement(SecondScreen, { mostInfo: this.mostInfo });
 			case 'pageTwo':
-				return React.createElement(ThirdScreen, { bestInfo: this.bestInfo });
+				return React.createElement(ThirdScreen, { mostInfo: this.mostInfo });
 			case 'pageThree':
-				return React.createElement(FourthScreen, { worryInfo: this.worryInfo });
+				return React.createElement(FourthScreen, { mostInfo: this.mostInfo });
 			case 'pageFour':
-				return React.createElement(FifthScreen, { confidenceInfo: this.confidenceInfo });
+				return React.createElement(FifthScreen, { mostInfo: this.mostInfo });
 			case 'pageFive':
-				return React.createElement(SixthScreen, { satisfactionInfo: this.satisfactionInfo });
+				return React.createElement(SixthScreen, { mostInfo: this.mostInfo });
 			case 'pageSix':
-				return React.createElement(SeventhScreen, { stressInfo: this.stressInfo });
+				return React.createElement(SeventhScreen, { mostInfo: this.mostInfo });
 			case 'pageSeven':
-				return React.createElement(EighthScreen, { sadnessInfo: this.sadnessInfo });
+				return React.createElement(EighthScreen, { mostInfo: this.mostInfo });
 			case 'pageEight':
-				return React.createElement(NinthScreen, { angerInfo: this.angerInfo });
+				return React.createElement(NinthScreen, { mostInfo: this.mostInfo });
 			case 'pageNine':
-				return React.createElement(TenthScreen, { happinessInfo: this.happinessInfo });
+				return React.createElement(TenthScreen, { mostInfo: this.mostInfo });
 			case 'pageTen':
-				return React.createElement(EleventhScreen, { funnyInfo: this.funnyInfo });
+				return React.createElement(EleventhScreen, { mostInfo: this.mostInfo });
 			case 'pageEleven':
 				return React.createElement(TwelfthScreen, { thingInfo: this.thingInfo });
 			default:
@@ -153,12 +110,15 @@ var FirstScreen = React.createClass({
 				null,
 				'What are three words to describe how you\'re feeling today?'
 			),
-			React.createElement('input', { onChange: this.handleWord, name: 'word1', type: 'text', value: this.state.word1 }),
-			React.createElement('input', { onChange: this.handleWord, name: 'word2', type: 'text', value: this.state.word2 }),
-			React.createElement('input', { onChange: this.handleWord, name: 'word3', type: 'text', value: this.state.word3 }),
+			React.createElement('input', { className: 'word', onChange: this.handleWord, name: 'word1', type: 'text', value: this.state.word1 }),
+			React.createElement('br', null),
+			React.createElement('input', { className: 'word', onChange: this.handleWord, name: 'word2', type: 'text', value: this.state.word2 }),
+			React.createElement('br', null),
+			React.createElement('input', { className: 'word', onChange: this.handleWord, name: 'word3', type: 'text', value: this.state.word3 }),
+			React.createElement('br', null),
 			React.createElement(
 				'button',
-				{ onClick: this.handlePage },
+				{ className: 'next', onClick: this.handlePage },
 				'Next'
 			)
 		);
@@ -173,14 +133,12 @@ var SecondScreen = React.createClass({
 	},
 	handleWorstInput: function (e) {
 		var state = this.state;
-		state.worst = e.target.value;
+		state[e.target.name] = e.target.value;
 		this.setState(state);
 	},
 	handleWorst: function () {
-		var state = this.state;
-		state.page = 'pageTwo';
-		this.setState(state);
-		this.props.worstInfo('pageTwo', this.state.worst);
+		var obj = { worst: this.state.worst };
+		this.props.mostInfo('pageTwo', obj);
 	},
 	render: function () {
 		return React.createElement(
@@ -191,10 +149,10 @@ var SecondScreen = React.createClass({
 				null,
 				'What bummed you out today?'
 			),
-			React.createElement('input', { onChange: this.handleWorstInput, name: 'worst', value: this.state.worst }),
+			React.createElement('input', { className: 'shortAnswer', onChange: this.handleWorstInput, name: 'worst', value: this.state.worst }),
 			React.createElement(
 				'button',
-				{ onClick: this.handleWorst },
+				{ className: 'next', onClick: this.handleWorst, name: 'worst' },
 				'Next'
 			)
 		);
@@ -213,13 +171,10 @@ var ThirdScreen = React.createClass({
 		this.setState(state);
 	},
 	handleBest: function () {
-		var state = this.state;
-		state.page = 'pageThree';
-		this.setState(state);
-		this.props.bestInfo('pageThree', this.state.best);
+		var obj = { best: this.state.best };
+		this.props.mostInfo('pageThree', obj);
 	},
 	render: function () {
-		console.log(this.props);
 		return React.createElement(
 			'div',
 			null,
@@ -228,10 +183,10 @@ var ThirdScreen = React.createClass({
 				null,
 				' Describe the best thing that happened to you today. '
 			),
-			React.createElement('input', { onChange: this.handleBestInput, name: 'best', value: this.state.best }),
+			React.createElement('input', { className: 'shortAnswer', onChange: this.handleBestInput, name: 'best', value: this.state.best }),
 			React.createElement(
 				'button',
-				{ onClick: this.handleBest },
+				{ className: 'next', onClick: this.handleBest },
 				'Next'
 			)
 		);
@@ -250,10 +205,8 @@ var FourthScreen = React.createClass({
 		this.setState(state);
 	},
 	handleWorry: function () {
-		var state = this.state;
-		state.page = 'pageFour';
-		this.setState(state);
-		this.props.worryInfo('pageFour', this.state.worry);
+		var obj = { worry: this.state.worry };
+		this.props.mostInfo('pageFour', obj);
 	},
 	render: function () {
 		return React.createElement(
@@ -264,10 +217,10 @@ var FourthScreen = React.createClass({
 				null,
 				'What is one thing you\u2019re worried about? '
 			),
-			React.createElement('input', { onChange: this.handleWorryInput, name: 'worry', value: this.state.worry }),
+			React.createElement('input', { className: 'shortAnswer', onChange: this.handleWorryInput, name: 'worry', value: this.state.worry }),
 			React.createElement(
 				'button',
-				{ onClick: this.handleWorry },
+				{ className: 'next', onClick: this.handleWorry },
 				'Next'
 			)
 		);
@@ -287,10 +240,8 @@ var FifthScreen = React.createClass({
 		this.setState(state);
 	},
 	handleConfidence: function () {
-		var state = this.state;
-		state.page = 'pageFive';
-		this.setState(state);
-		this.props.confidenceInfo('pageFive', this.state.confidence);
+		var obj = { confidence: this.state.confidence };
+		this.props.mostInfo('pageFive', obj);
 	},
 	render: function () {
 		return React.createElement(
@@ -304,7 +255,7 @@ var FifthScreen = React.createClass({
 			React.createElement('input', { type: 'number', onChange: this.handleConfidenceInput, name: 'confidence', value: this.state.condfidence }),
 			React.createElement(
 				'button',
-				{ onClick: this.handleConfidence },
+				{ className: 'next', onClick: this.handleConfidence },
 				'Next'
 			)
 		);
@@ -315,7 +266,7 @@ var SixthScreen = React.createClass({
 	displayName: 'SixthScreen',
 
 	getInitialState: function () {
-		return { page: 'pageFive', satisfaction: 0 };
+		return { page: 'pageFive', satisfaction: '' };
 	},
 	//add limitation on number of digits, i.e. make sure the number is from one to ten
 	handleSatisfactionInput: function (e) {
@@ -324,10 +275,8 @@ var SixthScreen = React.createClass({
 		this.setState(state);
 	},
 	handleSatisfaction: function () {
-		var state = this.state;
-		state.page = 'pageSix';
-		this.setState(state);
-		this.props.satisfactionInfo('pageSix', this.state.satisfaction);
+		var obj = { satisfaction: this.state.satisfaction };
+		this.props.mostInfo('pageSix', obj);
 	},
 	render: function () {
 		return React.createElement(
@@ -341,7 +290,7 @@ var SixthScreen = React.createClass({
 			React.createElement('input', { type: 'number', onChange: this.handleSatisfactionInput, name: 'satisfaction', value: this.state.satisfaction }),
 			React.createElement(
 				'button',
-				{ onClick: this.handleSatisfaction },
+				{ className: 'next', onClick: this.handleSatisfaction },
 				'Next'
 			)
 		);
@@ -352,7 +301,7 @@ var SeventhScreen = React.createClass({
 	displayName: 'SeventhScreen',
 
 	getInitialState: function () {
-		return { page: 'pageSix', stress: 0 };
+		return { page: 'pageSix', stress: '' };
 	},
 	//add limitation on number of digits, i.e. make sure the number is from one to ten
 	handleStressInput: function (e) {
@@ -361,10 +310,8 @@ var SeventhScreen = React.createClass({
 		this.setState(state);
 	},
 	handleStress: function () {
-		var state = this.state;
-		state.page = 'pageSeven';
-		this.setState(state);
-		this.props.stressInfo('pageSeven', this.state.stress);
+		var obj = { stress: this.state.stress };
+		this.props.mostInfo('pageSeven', obj);
 	},
 	render: function () {
 		return React.createElement(
@@ -378,7 +325,7 @@ var SeventhScreen = React.createClass({
 			React.createElement('input', { type: 'number', onChange: this.handleStressInput, name: 'stress', value: this.state.stress }),
 			React.createElement(
 				'button',
-				{ onClick: this.handleStress },
+				{ className: 'next', onClick: this.handleStress },
 				'Next'
 			)
 		);
@@ -389,7 +336,7 @@ var EighthScreen = React.createClass({
 	displayName: 'EighthScreen',
 
 	getInitialState: function () {
-		return { page: 'pageSeven', sadness: 0 };
+		return { page: 'pageSeven', sadness: '' };
 	},
 	handleSadnessInput: function (e) {
 		var state = this.state;
@@ -397,10 +344,8 @@ var EighthScreen = React.createClass({
 		this.setState(state);
 	},
 	handleSadness: function () {
-		var state = this.state;
-		state.page = 'pageEight';
-		this.setState(state);
-		this.props.sadnessInfo('pageEight', this.state.sadness);
+		var obj = { sadness: this.state.sadness };
+		this.props.mostInfo('pageEight', obj);
 	},
 	render: function () {
 		return React.createElement(
@@ -414,7 +359,7 @@ var EighthScreen = React.createClass({
 			React.createElement('input', { type: 'number', onChange: this.handleSadnessInput, name: 'sadness', value: this.state.sadness }),
 			React.createElement(
 				'button',
-				{ onClick: this.handleSadness },
+				{ className: 'next', onClick: this.handleSadness },
 				'Next'
 			)
 		);
@@ -425,7 +370,7 @@ var NinthScreen = React.createClass({
 	displayName: 'NinthScreen',
 
 	getInitialState: function () {
-		return { page: 'pageEight', anger: 0 };
+		return { page: 'pageEight', anger: '' };
 	},
 	handleAngerInput: function (e) {
 		var state = this.state;
@@ -433,10 +378,8 @@ var NinthScreen = React.createClass({
 		this.setState(state);
 	},
 	handleAnger: function () {
-		var state = this.state;
-		state.page = 'pageNine';
-		this.setState(state);
-		this.props.angerInfo('pageNine', this.state.anger);
+		var obj = { anger: this.state.anger };
+		this.props.mostInfo('pageNine', obj);
 	},
 	render: function () {
 		return React.createElement(
@@ -450,7 +393,7 @@ var NinthScreen = React.createClass({
 			React.createElement('input', { type: 'number', onChange: this.handleAngerInput, name: 'anger', value: this.state.anger }),
 			React.createElement(
 				'button',
-				{ onClick: this.handleAnger },
+				{ className: 'next', onClick: this.handleAnger },
 				'Next'
 			)
 		);
@@ -461,7 +404,7 @@ var TenthScreen = React.createClass({
 	displayName: 'TenthScreen',
 
 	getInitialState: function () {
-		return { page: 'pageNine', happiness: 0 };
+		return { page: 'pageNine', happiness: '' };
 	},
 	handleHappinessInput: function (e) {
 		var state = this.state;
@@ -469,10 +412,8 @@ var TenthScreen = React.createClass({
 		this.setState(state);
 	},
 	handleHappiness: function () {
-		var state = this.state;
-		state.page = 'pageTen';
-		this.setState(state);
-		this.props.happinessInfo('pageTen', this.state.happiness);
+		var obj = { happiness: this.state.happiness };
+		this.props.mostInfo('pageTen', obj);
 	},
 	render: function () {
 		return React.createElement(
@@ -486,7 +427,7 @@ var TenthScreen = React.createClass({
 			React.createElement('input', { type: 'number', onChange: this.handleHappinessInput, name: 'happiness', value: this.state.happiness }),
 			React.createElement(
 				'button',
-				{ onClick: this.handleHappiness },
+				{ className: 'next', onClick: this.handleHappiness },
 				'Next'
 			)
 		);
@@ -497,7 +438,7 @@ var EleventhScreen = React.createClass({
 	displayName: 'EleventhScreen',
 
 	getInitialState: function () {
-		return { page: 'pageTen', funny: 0 };
+		return { page: 'pageTen', funny: '' };
 	},
 	handleFunnyInput: function (e) {
 		var state = this.state;
@@ -505,10 +446,8 @@ var EleventhScreen = React.createClass({
 		this.setState(state);
 	},
 	handleFunny: function () {
-		var state = this.state;
-		state.page = 'pageEleven';
-		this.setState(state);
-		this.props.funnyInfo('pageEleven', this.state.funny);
+		var obj = { funny: this.state.funny };
+		this.props.mostInfo('pageEleven', obj);
 	},
 	render: function () {
 		return React.createElement(
@@ -522,7 +461,7 @@ var EleventhScreen = React.createClass({
 			React.createElement('input', { type: 'number', onChange: this.handleFunnyInput, name: 'funny', value: this.state.funny }),
 			React.createElement(
 				'button',
-				{ onClick: this.handleFunny },
+				{ className: 'next', onClick: this.handleFunny },
 				'Next'
 			)
 		);
@@ -560,8 +499,8 @@ var TwelfthScreen = React.createClass({
 			React.createElement('input', { onChange: this.handleThingInput, name: 'thing3', type: 'text', value: this.state.thing3 }),
 			React.createElement(
 				'button',
-				{ onClick: this.handleThing },
-				'Next'
+				{ className: 'submit', onClick: this.handleThing },
+				'Submit answers'
 			)
 		);
 	}

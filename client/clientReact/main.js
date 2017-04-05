@@ -7,13 +7,12 @@ var request = require('superagent');
 //clicking next set      s state
 //boolean/text value stating what page you're on
 var MainComponent = React.createClass({
-	//organize pages into whatPage function or something like that, with each page as either boolean or string value to better organize switch statement in render
+
 	getInitialState: function(){
 		return {loggedIn: true, username: '', word1: '', word2: '', word3: '', worst: '', best: '', worry: '',
 		confidence: 0, satisfaction: 0, stress: 0, sadness: 0, anger: 0, happiness: 0, funny: 0, thing1: '', thing2: '', thing3: '',
-		page: ''}
+		page: '', finished: false}
 	},
-	//cycle through pages: first time event listener runs, make pageOne true. second time,
 	firstPageInfo: function(page, word){
 		var state = this.state;
 		state.page = page;
@@ -22,65 +21,11 @@ var MainComponent = React.createClass({
 		state.word3 = word.word3;
 		this.setState(state)
 	},
-	worstInfo: function(page, worst){
+	mostInfo: function(page, prop){
 		var state = this.state;
-		state.page= page;
-		state.worst = worst;
-		state[worst] = worst
-		this.setState(state);
-	},
-	bestInfo: function(page, best){
-		var state = this.state;
-		state.page= page;
-		state.best = best;
-		this.setState(state);
-	},
-	worryInfo: function(page, worry){
-		var state = this.state;
+		var key = Object.keys(prop)[0]
+		state[key] = prop[key];
 		state.page = page;
-		state.worry = worry;
-		this.setState(state);
-	},
-	confidenceInfo: function(page, confidence){
-		var state = this.state;
-		state.page = page;
-		state.confidence = confidence;
-		this.setState(state);
-	},
-	satisfactionInfo: function(page, satisfaction){
-		var state = this.state;
-		state.page = page;
-		state.satisfaction = satisfaction;
-		this.setState(state);
-	},
-	stressInfo: function(page, stress){
-		var state = this.state;
-		state.page = page;
-		state.stress = stress;
-		this.setState(state);
-	},
-	sadnessInfo: function(page, sadness){
-		var state = this.state;
-		state.page = page;
-		state.sadness = sadness;
-		this.setState(state);
-	},
-	angerInfo: function(page, anger){
-		var state = this.state;
-		state.page = page;
-		state.anger = anger;
-		this.setState(state);
-	},
-	happinessInfo: function(page, happiness){
-		var state = this.state;
-		state.page = page;
-		state.happiness = happiness;
-		this.setState(state);
-	},
-	funnyInfo: function(page, funny){
-		var state = this.state;
-		state.page = page;
-		state.funny = funny;
 		this.setState(state);
 	},
 	thingInfo: function(page, thing){
@@ -89,52 +34,67 @@ var MainComponent = React.createClass({
 		state.thing1 = thing.thing1;
 		state.thing2 = thing.thing2;
 		state.thing3 = thing.thing3;
+		state.finished = true
 		this.setState(state);
 	},
+	postInformation: function(){
+		console.log('gonna make an ajax call about now')
+		var state = this.state;
+		var self = this;
+		request.post('http://localhost:9393/mood')
+		.type('form')
+		.send(self.state)
+		.end(function(err, data){
+			console.log(data.body)
+			window.location = '/home/cal'
+		})
+	},
+	componentWillUpdate: function(){
+		this.state.finished ? this.postInformation() : false
+	},
 	render: function(){
-		//post request with the button click will send the entries to the database
-		//if page1 is false, render FirstScreen, else if page1 = true and page2 = false, render next screen
-		//switch statement
+		console.log(this.state)
+
 		switch(this.state.page) {
 			case 'pageOne':
 				return (
-					<SecondScreen worstInfo={this.worstInfo}/>
+					<SecondScreen mostInfo={this.mostInfo}/>
 				)
 			case 'pageTwo':
 				return (
-					<ThirdScreen bestInfo={this.bestInfo}/>
+					<ThirdScreen mostInfo={this.mostInfo}/>
 				)
 			case 'pageThree':
 				return (
-					<FourthScreen worryInfo={this.worryInfo}/>
+					<FourthScreen mostInfo={this.mostInfo}/>
 				)
 			case 'pageFour':
 				return (
-					<FifthScreen confidenceInfo={this.confidenceInfo}/>
+					<FifthScreen mostInfo={this.mostInfo}/>
 				)
 			case 'pageFive':
 				return (
-					<SixthScreen satisfactionInfo={this.satisfactionInfo}/>
+					<SixthScreen mostInfo={this.mostInfo}/>
 				)
 			case 'pageSix':
 				return (
-					<SeventhScreen stressInfo={this.stressInfo}/>
+					<SeventhScreen mostInfo={this.mostInfo}/>
 				)
 			case 'pageSeven':
 				return (
-					<EighthScreen sadnessInfo={this.sadnessInfo}/>
+					<EighthScreen mostInfo={this.mostInfo}/>
 				)
 			case 'pageEight':
 				return (
-					<NinthScreen angerInfo={this.angerInfo}/>
+					<NinthScreen mostInfo={this.mostInfo}/>
 				)
 			case 'pageNine':
 				return (
-					<TenthScreen happinessInfo={this.happinessInfo}/>
+					<TenthScreen mostInfo={this.mostInfo}/>
 				)
 			case 'pageTen':
 				return (
-					<EleventhScreen funnyInfo={this.funnyInfo}/>
+					<EleventhScreen mostInfo={this.mostInfo}/>
 				)
 			case 'pageEleven':
 				return (
@@ -170,10 +130,13 @@ var FirstScreen = React.createClass({
 				<h1>
 					What are three words to describe how you're feeling today?
 				</h1>
-					<input onChange={this.handleWord} name="word1" type="text" value={this.state.word1}/>
-					<input onChange={this.handleWord} name="word2" type="text" value={this.state.word2}/>
-					<input onChange={this.handleWord} name="word3" type="text" value={this.state.word3}/>
-					<button onClick={this.handlePage}>Next</button>
+					<input className="word" onChange={this.handleWord} name="word1" type="text" value={this.state.word1}/>
+					<br/>
+					<input className="word" onChange={this.handleWord} name="word2" type="text" value={this.state.word2}/>
+					<br/>
+					<input className="word" onChange={this.handleWord} name="word3" type="text" value={this.state.word3}/>
+					<br/>
+					<button className="next" onClick={this.handlePage}>Next</button>
 			</div>
 		)
 	}
@@ -185,21 +148,19 @@ var SecondScreen = React.createClass({
 	},
 	handleWorstInput: function(e){
 		var state = this.state;
-		state.worst = e.target.value;
+		state[e.target.name] = e.target.value;
 		this.setState(state);
 	},
 	handleWorst: function(){
-		var state = this.state;
-		state.page = 'pageTwo'
-		this.setState(state);
-		this.props.worstInfo('pageTwo', this.state.worst)
+		var obj = {worst: this.state.worst}
+		this.props.mostInfo('pageTwo', obj)
 	},
 	render: function(){
 		return (
 			<div>
 				<h1>What bummed you out today?</h1>
-				<input onChange={this.handleWorstInput} name="worst" value={this.state.worst}/>
-				<button onClick={this.handleWorst}>Next</button>
+				<input className="shortAnswer" onChange={this.handleWorstInput} name="worst" value={this.state.worst}/>
+				<button className="next" onClick={this.handleWorst} name="worst">Next</button>
 			</div>
 		)
 	}
@@ -215,18 +176,15 @@ var ThirdScreen = React.createClass({
 		this.setState(state);
 	},
 	handleBest: function(){
-		var state = this.state;
-		state.page = 'pageThree'
-		this.setState(state);
-		this.props.bestInfo('pageThree', this.state.best)
+		var obj = {best: this.state.best}
+		this.props.mostInfo('pageThree', obj)
 	},
 	render: function(){
-		console.log(this.props)
 		return (
 			<div>
 				<h1> Describe the best thing that happened to you today. </h1>
-				<input onChange={this.handleBestInput} name="best" value={this.state.best}/>
-				<button onClick={this.handleBest}>Next</button>
+				<input className="shortAnswer" onChange={this.handleBestInput} name="best" value={this.state.best}/>
+				<button className="next" onClick={this.handleBest}>Next</button>
 			</div>
 		)
 	}
@@ -242,17 +200,15 @@ var FourthScreen = React.createClass({
 		this.setState(state);
 	},
 	handleWorry: function(){
-		var state = this.state;
-		state.page = 'pageFour'
-		this.setState(state);
-		this.props.worryInfo('pageFour', this.state.worry)
+		var obj = {worry: this.state.worry}
+		this.props.mostInfo('pageFour', obj)
 	},
 	render: function(){
 		return (
 			<div>
 				<h1>What is one thing you’re worried about? </h1>
-				<input onChange={this.handleWorryInput} name="worry" value={this.state.worry}/>
-				<button onClick={this.handleWorry}>Next</button>
+				<input className="shortAnswer" onChange={this.handleWorryInput} name="worry" value={this.state.worry}/>
+				<button className="next" onClick={this.handleWorry}>Next</button>
 			</div>
 		)
 	}
@@ -269,17 +225,15 @@ var FifthScreen = React.createClass({
 		this.setState(state);
 	},
 	handleConfidence: function(){
-		var state = this.state;
-		state.page = 'pageFive'
-		this.setState(state);
-		this.props.confidenceInfo('pageFive', this.state.confidence)
+		var obj = {confidence: this.state.confidence}
+		this.props.mostInfo('pageFive', obj)
 	},
 	render: function(){
 		return (
 			<div>
 				<h1>On a scale of 1 to 10, how confident do you feel?</h1>
 				<input type="number" onChange={this.handleConfidenceInput} name="confidence" value={this.state.condfidence}/>
-				<button onClick={this.handleConfidence}>Next</button>
+				<button className="next" onClick={this.handleConfidence}>Next</button>
 			</div>
 		)
 	}
@@ -287,7 +241,7 @@ var FifthScreen = React.createClass({
 
 var SixthScreen = React.createClass({
 	getInitialState: function(){
-		return {page: 'pageFive', satisfaction: 0}
+		return {page: 'pageFive', satisfaction: ''}
 	},
 	//add limitation on number of digits, i.e. make sure the number is from one to ten
 	handleSatisfactionInput: function(e){
@@ -296,17 +250,15 @@ var SixthScreen = React.createClass({
 		this.setState(state);
 	},
 	handleSatisfaction: function(){
-		var state = this.state;
-		state.page = 'pageSix'
-		this.setState(state);
-		this.props.satisfactionInfo('pageSix', this.state.satisfaction)
+		var obj = {satisfaction: this.state.satisfaction}
+		this.props.mostInfo('pageSix', obj)
 	},
 	render: function(){
 		return (
 			<div>
 				<h1>On a scale of 1 to 10, how satisfied do you feel?</h1>
 				<input type="number" onChange={this.handleSatisfactionInput} name="satisfaction" value={this.state.satisfaction}/>
-				<button onClick={this.handleSatisfaction}>Next</button>
+				<button className="next" onClick={this.handleSatisfaction}>Next</button>
 			</div>
 		)
 	}
@@ -314,7 +266,7 @@ var SixthScreen = React.createClass({
 
 var SeventhScreen = React.createClass({
 	getInitialState: function(){
-		return {page: 'pageSix', stress: 0}
+		return {page: 'pageSix', stress: ''}
 	},
 	//add limitation on number of digits, i.e. make sure the number is from one to ten
 	handleStressInput: function(e){
@@ -323,17 +275,15 @@ var SeventhScreen = React.createClass({
 		this.setState(state);
 	},
 	handleStress: function(){
-		var state = this.state;
-		state.page = 'pageSeven'
-		this.setState(state);
-		this.props.stressInfo('pageSeven', this.state.stress)
+		var obj = {stress: this.state.stress}
+		this.props.mostInfo('pageSeven', obj)
 	},
 	render: function(){
 		return (
 			<div>
 				<h1>On a scale of 1 to 10, how stressed out do you feel?</h1>
 				<input type="number" onChange={this.handleStressInput} name="stress" value={this.state.stress}/>
-				<button onClick={this.handleStress}>Next</button>
+				<button className="next" onClick={this.handleStress}>Next</button>
 			</div>
 		)
 	}
@@ -341,7 +291,7 @@ var SeventhScreen = React.createClass({
 
 var EighthScreen = React.createClass({
 	getInitialState: function(){
-		return {page: 'pageSeven', sadness: 0}
+		return {page: 'pageSeven', sadness: ''}
 	},
 	handleSadnessInput: function(e){
 		var state = this.state;
@@ -349,17 +299,15 @@ var EighthScreen = React.createClass({
 		this.setState(state);
 	},
 	handleSadness: function(){
-		var state = this.state;
-		state.page = 'pageEight'
-		this.setState(state);
-		this.props.sadnessInfo('pageEight', this.state.sadness)
+		var obj = {sadness: this.state.sadness}
+		this.props.mostInfo('pageEight', obj)
 	},
 	render: function(){
 		return (
 			<div>
 				<h1>On a scale of 1 to 10, how sad do you feel?</h1>
 				<input type="number" onChange={this.handleSadnessInput} name="sadness" value={this.state.sadness}/>
-				<button onClick={this.handleSadness}>Next</button>
+				<button className="next" onClick={this.handleSadness}>Next</button>
 			</div>
 		)
 	}
@@ -367,7 +315,7 @@ var EighthScreen = React.createClass({
 
 var NinthScreen = React.createClass({
 	getInitialState: function(){
-		return {page: 'pageEight', anger: 0}
+		return {page: 'pageEight', anger: ''}
 	},
 	handleAngerInput: function(e){
 		var state = this.state;
@@ -375,17 +323,15 @@ var NinthScreen = React.createClass({
 		this.setState(state);
 	},
 	handleAnger: function(){
-		var state = this.state;
-		state.page = 'pageNine'
-		this.setState(state);
-		this.props.angerInfo('pageNine', this.state.anger)
+		var obj = {anger: this.state.anger}
+		this.props.mostInfo('pageNine', obj)
 	},
 	render: function(){
 		return (
 			<div>
 				<h1>On a scale of 1 to 10, how angry do you feel?</h1>
 				<input type="number" onChange={this.handleAngerInput} name="anger" value={this.state.anger}/>
-				<button onClick={this.handleAnger}>Next</button>
+				<button className="next" onClick={this.handleAnger}>Next</button>
 			</div>
 		)
 	}
@@ -393,7 +339,7 @@ var NinthScreen = React.createClass({
 
 var TenthScreen = React.createClass({
 	getInitialState: function(){
-		return {page: 'pageNine', happiness: 0}
+		return {page: 'pageNine', happiness: ''}
 	},
 	handleHappinessInput: function(e){
 		var state = this.state;
@@ -401,17 +347,15 @@ var TenthScreen = React.createClass({
 		this.setState(state);
 	},
 	handleHappiness: function(){
-		var state = this.state;
-		state.page = 'pageTen'
-		this.setState(state);
-		this.props.happinessInfo('pageTen', this.state.happiness)
+		var obj = {happiness: this.state.happiness}
+		this.props.mostInfo('pageTen', obj)
 	},
 	render: function(){
 		return (
 			<div>
 				<h1>On a scale of 1 to 10, how happy do you feel?</h1>
 				<input type="number" onChange={this.handleHappinessInput} name="happiness" value={this.state.happiness}/>
-				<button onClick={this.handleHappiness}>Next</button>
+				<button className="next" onClick={this.handleHappiness}>Next</button>
 			</div>
 		)
 	}
@@ -419,7 +363,7 @@ var TenthScreen = React.createClass({
 
 var EleventhScreen = React.createClass({
 	getInitialState: function(){
-		return {page: 'pageTen', funny: 0}
+		return {page: 'pageTen', funny: ''}
 	},
 	handleFunnyInput: function(e){
 		var state = this.state;
@@ -427,17 +371,15 @@ var EleventhScreen = React.createClass({
 		this.setState(state);
 	},
 	handleFunny: function(){
-		var state = this.state;
-		state.page = 'pageEleven'
-		this.setState(state);
-		this.props.funnyInfo('pageEleven', this.state.funny)
+		var obj = {funny: this.state.funny}
+		this.props.mostInfo('pageEleven', obj)
 	},
 	render: function(){
 		return (
 			<div>
 				<h1>On a scale of 1 to 10, how funny do you feel?</h1>
 				<input type="number" onChange={this.handleFunnyInput} name="funny" value={this.state.funny}/>
-				<button onClick={this.handleFunny}>Next</button>
+				<button className="next" onClick={this.handleFunny}>Next</button>
 			</div>
 		)
 	}
@@ -467,7 +409,7 @@ var TwelfthScreen = React.createClass({
 					<input onChange={this.handleThingInput} name="thing1" type="text" value={this.state.thing1}/>
 					<input onChange={this.handleThingInput} name="thing2" type="text" value={this.state.thing2}/>
 					<input onChange={this.handleThingInput} name="thing3" type="text" value={this.state.thing3}/>
-					<button onClick={this.handleThing}>Next</button>
+					<button className="submit" onClick={this.handleThing}>Submit answers</button>
 			</div>
 		)
 	}

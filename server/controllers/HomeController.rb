@@ -1,9 +1,14 @@
 class HomeController < ApplicationController
 
-	get '/' do
+	#route is /home
+	get ('/') do
+		erb :home
+	end
+	#route is /home/cal
+	get '/cal' do
 		if session[:logged_in]
 			@username = session[:username]
-			erb :home
+			erb :cal
 		else
 			@message = "you are not logged in"
 			erb :login
@@ -21,6 +26,10 @@ class HomeController < ApplicationController
 	get '/logout' do
 		session.destroy
 		redirect '/home/login'
+	end
+
+	get ('/cal') do
+		erb :cal
 	end
 
 	post '/register' do
@@ -44,7 +53,7 @@ class HomeController < ApplicationController
 			session[:user_id] = user.id
 			p session
 
-			redirect '/home'
+			redirect '/home/cal'
 		else
 			@message = "login unsuccessful"
 			erb :login

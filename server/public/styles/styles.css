@@ -1,0 +1,53 @@
+body {
+  background-color: #F9F2D7;
+  color: #113F40;
+  font-family: 'Comfortaa', cursive;
+}
+body h1 {
+  font-size: 60px;
+  text-align: center;
+  margin-top: 10%;
+  margin-bottom: 60px;
+  width: 80%;
+  margin-left: 10%;
+}
+body .word {
+  width: 70%;
+  margin-left: 12%;
+  padding: 25px;
+  margin-top: 50px;
+  height: 70px;
+  border-radius: 40px;
+  font-size: 50px;
+  text-align: center;
+}
+body .next {
+  background-color: #113F40;
+  color: #CEF1F1;
+  margin-left: 67%;
+  width: 200px;
+  height: 100px;
+  margin-top: 50px;
+  border-radius: 10px;
+  font-size: 65px;
+}
+body .shortAnswer {
+  width: 80%;
+  margin-left: 8%;
+  padding: 25px;
+  margin-top: 50px;
+  height: 70px;
+  border-radius: 40px;
+  font-size: 50px;
+  text-align: left;
+}
+body .submit {
+  background-color: #113F40;
+  color: #CEF1F1;
+  margin-left: 67%;
+  width: 300px;
+  height: 200px;
+  margin-top: 50px;
+  border-radius: 10px;
+  font-size: 50px;
+}
