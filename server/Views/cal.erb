@@ -8,27 +8,29 @@
 		<!-- only show button if you haven't checked in yet today -->
 		<a href="/home/logout">Log out!</a>
 		<h1>Welcome home, <%= @username %>.</h1>
-		<%= @message %>
+		<h1 class="message">Great job. <%= @message %> </h1>
 		<div class="week">
-			<div class="day"><h2>Monday</h2>
+			<div class="day"><h2 class="dayH2">Monday</h2>
 			<input type="hidden" name="dayValue" value="1"></div>
-			<div class="day"><h2>Tuesday</h2>
+			<div class="day"><h2 class="dayH2">Tuesday</h2>
 			<input type="hidden" name="dayValue" value="2"></div>
-			<div class="day"><h2>Wednesday</h2>
+			<div class="day"><h2 class="dayH2">Wednesday</h2>
 			<input type="hidden" name="dayValue" value="3"></div>
-			<div class="day"><h2>Thursday</h2>
+			<div class="day"><h2 class="dayH2">Thursday</h2>
 			<input type="hidden" name="dayValue" value="4"></div>
-			<div class="day"><h2>Friday</h2>
+			<div class="day"><h2 class="dayH2">Friday</h2>
 			<input type="hidden" name="dayValue" value="5"></div>
-			<div class="day"><h2>Saturday</h2>
+			<div class="day"><h2 class="dayH2">Saturday</h2>
 			<input type="hidden" name="dayValue" value="6"></div>
-			<div class="day"><h2>Sunday</h2>
+			<div class="day"><h2 class="dayH2">Sunday</h2>
 			<input type="hidden" name="dayValue" value="0"></div>
 		</div>
 		<% if @button %>
+		<div class="checkInDiv">
 		<a href="/home">
 		<button class="checkIn">Check in</button>
 		</a>
+		</div>
 		<% end %>
 		<!-- if @day_limit is true, add class hidden to the button -->
 		<script src="/js/app/app.js"></script>

@@ -112,16 +112,24 @@ var FirstScreen = React.createClass({
 				null,
 				'What are three words to describe how you\'re feeling today?'
 			),
-			React.createElement('input', { className: 'word', onChange: this.handleWord, name: 'word1', type: 'text', value: this.state.word1 }),
-			React.createElement('br', null),
-			React.createElement('input', { className: 'word', onChange: this.handleWord, name: 'word2', type: 'text', value: this.state.word2 }),
-			React.createElement('br', null),
-			React.createElement('input', { className: 'word', onChange: this.handleWord, name: 'word3', type: 'text', value: this.state.word3 }),
-			React.createElement('br', null),
 			React.createElement(
-				'button',
-				{ className: 'next', onClick: this.handlePage },
-				'Next'
+				'div',
+				{ className: 'threeWords' },
+				React.createElement('input', { className: 'word', onChange: this.handleWord, name: 'word1', type: 'text', value: this.state.word1 }),
+				React.createElement('br', null),
+				React.createElement('input', { className: 'word', onChange: this.handleWord, name: 'word2', type: 'text', value: this.state.word2 }),
+				React.createElement('br', null),
+				React.createElement('input', { className: 'word', onChange: this.handleWord, name: 'word3', type: 'text', value: this.state.word3 }),
+				React.createElement('br', null)
+			),
+			React.createElement(
+				'div',
+				{ className: 'nextDiv' },
+				React.createElement(
+					'button',
+					{ className: 'next', onClick: this.handlePage },
+					'Next'
+				)
 			)
 		);
 	}
@@ -153,9 +161,13 @@ var SecondScreen = React.createClass({
 			),
 			React.createElement('input', { className: 'shortAnswer', onChange: this.handleWorstInput, name: 'worst', value: this.state.worst }),
 			React.createElement(
-				'button',
-				{ className: 'next', onClick: this.handleWorst, name: 'worst' },
-				'Next'
+				'div',
+				{ className: 'nextDiv' },
+				React.createElement(
+					'button',
+					{ className: 'next', onClick: this.handleWorst, name: 'worst' },
+					'Next'
+				)
 			)
 		);
 	}
@@ -187,9 +199,13 @@ var ThirdScreen = React.createClass({
 			),
 			React.createElement('input', { className: 'shortAnswer', onChange: this.handleBestInput, name: 'best', value: this.state.best }),
 			React.createElement(
-				'button',
-				{ className: 'next', onClick: this.handleBest },
-				'Next'
+				'div',
+				{ className: 'nextDiv' },
+				React.createElement(
+					'button',
+					{ className: 'next', onClick: this.handleBest },
+					'Next'
+				)
 			)
 		);
 	}
@@ -221,9 +237,13 @@ var FourthScreen = React.createClass({
 			),
 			React.createElement('input', { className: 'shortAnswer', onChange: this.handleWorryInput, name: 'worry', value: this.state.worry }),
 			React.createElement(
-				'button',
-				{ className: 'next', onClick: this.handleWorry },
-				'Next'
+				'div',
+				{ className: 'nextDiv' },
+				React.createElement(
+					'button',
+					{ className: 'next', onClick: this.handleWorry },
+					'Next'
+				)
 			)
 		);
 	}
@@ -256,9 +276,13 @@ var FifthScreen = React.createClass({
 			),
 			React.createElement('input', { type: 'number', onChange: this.handleConfidenceInput, name: 'confidence', value: this.state.condfidence }),
 			React.createElement(
-				'button',
-				{ className: 'next', onClick: this.handleConfidence },
-				'Next'
+				'div',
+				{ className: 'nextDiv' },
+				React.createElement(
+					'button',
+					{ className: 'next', onClick: this.handleConfidence },
+					'Next'
+				)
 			)
 		);
 	}
@@ -291,9 +315,13 @@ var SixthScreen = React.createClass({
 			),
 			React.createElement('input', { type: 'number', onChange: this.handleSatisfactionInput, name: 'satisfaction', value: this.state.satisfaction }),
 			React.createElement(
-				'button',
-				{ className: 'next', onClick: this.handleSatisfaction },
-				'Next'
+				'div',
+				{ className: 'nextDiv' },
+				React.createElement(
+					'button',
+					{ className: 'next', onClick: this.handleSatisfaction },
+					'Next'
+				)
 			)
 		);
 	}
@@ -326,9 +354,13 @@ var SeventhScreen = React.createClass({
 			),
 			React.createElement('input', { type: 'number', onChange: this.handleStressInput, name: 'stress', value: this.state.stress }),
 			React.createElement(
-				'button',
-				{ className: 'next', onClick: this.handleStress },
-				'Next'
+				'div',
+				{ className: 'nextDiv' },
+				React.createElement(
+					'button',
+					{ className: 'next', onClick: this.handleStress },
+					'Next'
+				)
 			)
 		);
 	}
@@ -360,9 +392,13 @@ var EighthScreen = React.createClass({
 			),
 			React.createElement('input', { type: 'number', onChange: this.handleSadnessInput, name: 'sadness', value: this.state.sadness }),
 			React.createElement(
-				'button',
-				{ className: 'next', onClick: this.handleSadness },
-				'Next'
+				'div',
+				{ className: 'nextDiv' },
+				React.createElement(
+					'button',
+					{ className: 'next', onClick: this.handleSadness },
+					'Next'
+				)
 			)
 		);
 	}
@@ -394,9 +430,13 @@ var NinthScreen = React.createClass({
 			),
 			React.createElement('input', { type: 'number', onChange: this.handleAngerInput, name: 'anger', value: this.state.anger }),
 			React.createElement(
-				'button',
-				{ className: 'next', onClick: this.handleAnger },
-				'Next'
+				'div',
+				{ className: 'nextDiv' },
+				React.createElement(
+					'button',
+					{ className: 'next', onClick: this.handleAnger },
+					'Next'
+				)
 			)
 		);
 	}
@@ -428,9 +468,13 @@ var TenthScreen = React.createClass({
 			),
 			React.createElement('input', { type: 'number', onChange: this.handleHappinessInput, name: 'happiness', value: this.state.happiness }),
 			React.createElement(
-				'button',
-				{ className: 'next', onClick: this.handleHappiness },
-				'Next'
+				'div',
+				{ className: 'nextDiv' },
+				React.createElement(
+					'button',
+					{ className: 'next', onClick: this.handleHappiness },
+					'Next'
+				)
 			)
 		);
 	}
@@ -462,9 +506,13 @@ var EleventhScreen = React.createClass({
 			),
 			React.createElement('input', { type: 'number', onChange: this.handleFunnyInput, name: 'funny', value: this.state.funny }),
 			React.createElement(
-				'button',
-				{ className: 'next', onClick: this.handleFunny },
-				'Next'
+				'div',
+				{ className: 'nextDiv' },
+				React.createElement(
+					'button',
+					{ className: 'next', onClick: this.handleFunny },
+					'Next'
+				)
 			)
 		);
 	}
@@ -500,9 +548,13 @@ var TwelfthScreen = React.createClass({
 			React.createElement('input', { onChange: this.handleThingInput, name: 'thing2', type: 'text', value: this.state.thing2 }),
 			React.createElement('input', { onChange: this.handleThingInput, name: 'thing3', type: 'text', value: this.state.thing3 }),
 			React.createElement(
-				'button',
-				{ className: 'submit', onClick: this.handleThing },
-				'Submit answers'
+				'div',
+				null,
+				React.createElement(
+					'button',
+					{ className: 'submit', onClick: this.handleThing },
+					'Submit answers'
+				)
 			)
 		);
 	}

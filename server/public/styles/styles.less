@@ -1,3 +1,8 @@
+@newBlue: #0C393F;
+
+
+
+
 @yellow: #F9F2D7;
 @blueText: #113F40;
 @lightBlue: #CEF1F1;
@@ -9,32 +14,44 @@ body {
 	font-family: 'Comfortaa', cursive;
 
 	h1 {
-		font-size: 60px;
+		font-size: 50px;
 	    text-align: center;
-	    margin-top: 10%;
-	    margin-bottom: 60px;
+	    margin-top: 7%;
+	    margin-bottom: 70px;
 	    width: 80%;
 	    margin-left: 10%;
 	}
+	.threeWords {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
 	.word {
-		width: 70%;
-	    margin-left: 12%;
-	    padding: 25px;
-	    margin-top: 50px;
-	    height: 70px;
-	    border-radius: 40px;
-	    font-size: 50px;
-	    text-align: center;
+		width: 25%;
+		margin: 20px;
+		padding: 20px;
+		margin-top: 50px;
+		height: 55px;
+		border-radius: 10px;
+		font-size: 50px;
+		text-align: center;
+	}
+	.nextDiv {
+		float:right;
+		margin-right: 5%;
+		margin-bottom: 50px;
 	}
 	.next {
 		background-color: @blueText;
 		color: @lightBlue;
-		margin-left: 67%;
+		border: none;
 		width: 200px;
 		height: 100px;
 		margin-top: 50px;
 		border-radius: 10px;
 		font-size: 65px;
+		box-shadow: 0px 1px 3px rgba(99, 111, 119, 0.88);
+		letter-spacing: 2.5px;
 
 	}
 	.shortAnswer {
@@ -58,23 +75,32 @@ body {
 		font-size: 50px;
 	}
 	.week {
-		margin-right: 2.5%;
+		// margin-right: 2.5%;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		margin-bottom: 70px;
 		.day {
-			float: right;
 			margin: 10px;
 			width: 150px;
-			height: 100px;
+    		height: 85px;
 			border-radius: 5px;
 			background-color: @blueText;
 			h2 {
-				color: @gold;
-				font-size: 24px;
+				// color: @gold;
+				font-size: 20px;
 	    		text-align: center;
+				margin-top: 30px;
 			}
 			.check {
 				margin-left: 44%;
 			}
 		}
+	}
+	.checkInDiv {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
 	}
 	.checkIn {
 		background-color: @gold;
@@ -85,9 +111,7 @@ body {
 		font-size: 40px;
 		border-radius: 5px;
 		padding: 20px;
-		margin-left: 40%;
-		margin-top: 40px;
-
+		box-shadow: 0px 1px 3px rgba(99, 111, 119, 0.88)
 	}
 	.test {
 		background-color: @gold;
@@ -103,6 +127,60 @@ body {
 	}
 	button:hover {
 		transform: scale(1.025);
-		transition: all .2s;
+		transition: all .3s;
+		box-shadow: 1px 2px 3px rgba(99, 111, 119, 0.88)
 	}
+	.dayH2 {
+		color: gray
+	}
+	.today {
+		color: @gold;
+	}
+	.message {
+		font-size: 30px;
+    	margin-top: 0px;
+	}
+
+	@media screen and (max-width: 800px) {
+		.week {
+			flex-direction: column;
+			align-items: center;
+			.day {
+				width: 200px;
+    			height: 80px;
+			}
+		}
+		h1 {
+			font-size: 40px;
+			margin-bottom: 30px;
+		}
+		.message {
+			margin-bottom: 10px;
+		}
+		.threeWords {
+			flex-direction: column;
+			align-items: center;
+			.word {
+				margin-top: 10px;
+				width: 50%;
+				height: 25px;
+			}
+		}
+		.nextDiv {
+			margin-right: 22%;
+			.next {
+				background-color: #113F40;
+				color: #CEF1F1;
+				border: none;
+				width: 150px;
+				height: 75px;
+				margin-top: 5px;
+				border-radius: 5px;
+				font-size: 45px;
+				box-shadow: 0px 1px 3px rgba(99, 111, 119, 0.88);
+				letter-spacing: 3px;
+			}
+		}
+	}
+
 }

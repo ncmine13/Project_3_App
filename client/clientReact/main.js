@@ -133,13 +133,15 @@ var FirstScreen = React.createClass({
 				<h1>
 					What are three words to describe how you're feeling today?
 				</h1>
+				<div className="threeWords">
 					<input className="word" onChange={this.handleWord} name="word1" type="text" value={this.state.word1}/>
 					<br/>
 					<input className="word" onChange={this.handleWord} name="word2" type="text" value={this.state.word2}/>
 					<br/>
 					<input className="word" onChange={this.handleWord} name="word3" type="text" value={this.state.word3}/>
 					<br/>
-					<button className="next" onClick={this.handlePage}>Next</button>
+				</div>
+				<div className="nextDiv"><button className="next" onClick={this.handlePage}>Next</button></div>
 			</div>
 		)
 	}
@@ -163,7 +165,7 @@ var SecondScreen = React.createClass({
 			<div>
 				<h1>What bummed you out today?</h1>
 				<input className="shortAnswer" onChange={this.handleWorstInput} name="worst" value={this.state.worst}/>
-				<button className="next" onClick={this.handleWorst} name="worst">Next</button>
+				<div className="nextDiv"><button className="next" onClick={this.handleWorst} name="worst">Next</button></div>
 			</div>
 		)
 	}
@@ -187,7 +189,7 @@ var ThirdScreen = React.createClass({
 			<div>
 				<h1> Describe the best thing that happened to you today. </h1>
 				<input className="shortAnswer" onChange={this.handleBestInput} name="best" value={this.state.best}/>
-				<button className="next" onClick={this.handleBest}>Next</button>
+				<div className="nextDiv"><button className="next" onClick={this.handleBest}>Next</button></div>
 			</div>
 		)
 	}
@@ -211,7 +213,7 @@ var FourthScreen = React.createClass({
 			<div>
 				<h1>What is one thing you’re worried about? </h1>
 				<input className="shortAnswer" onChange={this.handleWorryInput} name="worry" value={this.state.worry}/>
-				<button className="next" onClick={this.handleWorry}>Next</button>
+				<div className="nextDiv"><button className="next" onClick={this.handleWorry}>Next</button></div>
 			</div>
 		)
 	}
@@ -236,7 +238,7 @@ var FifthScreen = React.createClass({
 			<div>
 				<h1>On a scale of 1 to 10, how confident do you feel?</h1>
 				<input type="number" onChange={this.handleConfidenceInput} name="confidence" value={this.state.condfidence}/>
-				<button className="next" onClick={this.handleConfidence}>Next</button>
+				<div className="nextDiv"><button className="next" onClick={this.handleConfidence}>Next</button></div>
 			</div>
 		)
 	}
@@ -261,7 +263,7 @@ var SixthScreen = React.createClass({
 			<div>
 				<h1>On a scale of 1 to 10, how satisfied do you feel?</h1>
 				<input type="number" onChange={this.handleSatisfactionInput} name="satisfaction" value={this.state.satisfaction}/>
-				<button className="next" onClick={this.handleSatisfaction}>Next</button>
+				<div className="nextDiv"><button className="next" onClick={this.handleSatisfaction}>Next</button></div>
 			</div>
 		)
 	}
@@ -286,7 +288,7 @@ var SeventhScreen = React.createClass({
 			<div>
 				<h1>On a scale of 1 to 10, how stressed out do you feel?</h1>
 				<input type="number" onChange={this.handleStressInput} name="stress" value={this.state.stress}/>
-				<button className="next" onClick={this.handleStress}>Next</button>
+				<div className="nextDiv"><button className="next" onClick={this.handleStress}>Next</button></div>
 			</div>
 		)
 	}
@@ -310,7 +312,7 @@ var EighthScreen = React.createClass({
 			<div>
 				<h1>On a scale of 1 to 10, how sad do you feel?</h1>
 				<input type="number" onChange={this.handleSadnessInput} name="sadness" value={this.state.sadness}/>
-				<button className="next" onClick={this.handleSadness}>Next</button>
+				<div className="nextDiv"><button className="next" onClick={this.handleSadness}>Next</button></div>
 			</div>
 		)
 	}
@@ -334,7 +336,7 @@ var NinthScreen = React.createClass({
 			<div>
 				<h1>On a scale of 1 to 10, how angry do you feel?</h1>
 				<input type="number" onChange={this.handleAngerInput} name="anger" value={this.state.anger}/>
-				<button className="next" onClick={this.handleAnger}>Next</button>
+				<div className="nextDiv"><button className="next" onClick={this.handleAnger}>Next</button></div>
 			</div>
 		)
 	}
@@ -358,7 +360,7 @@ var TenthScreen = React.createClass({
 			<div>
 				<h1>On a scale of 1 to 10, how happy do you feel?</h1>
 				<input type="number" onChange={this.handleHappinessInput} name="happiness" value={this.state.happiness}/>
-				<button className="next" onClick={this.handleHappiness}>Next</button>
+				<div className="nextDiv"><button className="next" onClick={this.handleHappiness}>Next</button></div>
 			</div>
 		)
 	}
@@ -382,7 +384,7 @@ var EleventhScreen = React.createClass({
 			<div>
 				<h1>On a scale of 1 to 10, how funny do you feel?</h1>
 				<input type="number" onChange={this.handleFunnyInput} name="funny" value={this.state.funny}/>
-				<button className="next" onClick={this.handleFunny}>Next</button>
+				<div className="nextDiv"><button className="next" onClick={this.handleFunny}>Next</button></div>
 			</div>
 		)
 	}
@@ -412,7 +414,7 @@ var TwelfthScreen = React.createClass({
 					<input onChange={this.handleThingInput} name="thing1" type="text" value={this.state.thing1}/>
 					<input onChange={this.handleThingInput} name="thing2" type="text" value={this.state.thing2}/>
 					<input onChange={this.handleThingInput} name="thing3" type="text" value={this.state.thing3}/>
-					<button className="submit" onClick={this.handleThing}>Submit answers</button>
+					<div><button className="submit" onClick={this.handleThing}>Submit answers</button></div>
 			</div>
 		)
 	}
