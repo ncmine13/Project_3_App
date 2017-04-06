@@ -45,6 +45,7 @@ class MoodController < ApplicationController
 		postsubmitted = @user.postsubmitted
 		other = postsubmitted.split()
 		other[0] = "true"
+		other[1] = Time.now.to_s.slice(0, 10)
 		newString = other*" "
 		@user.postsubmitted = newString
 		@user.save

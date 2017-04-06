@@ -5,11 +5,25 @@ class HomeController < ApplicationController
 		erb :home
 	end
 	#route is /home/cal
+	#not working at the end of the route ugh, because session object isnt updated
 	get '/cal' do
+		@button = true
+		@today = session[:today]
+		username = session[:username]
+		user = User.find_by(username: username)
+		if user.postsubmitted.split()[0] == "true"
+			@message = "See you tomorrow!"
+			@button = false
+		end
+
 		if session[:logged_in]
 			@username = session[:username]
 			@day_limit = session[:daylimit]
-			erb :cal
+			if @day_limit == true
+				@button = false;
+				@message = "See you tomorrow!"
+			end
+		erb :cal
 
 		else
 			@message = "you are not logged in"
@@ -60,12 +74,15 @@ class HomeController < ApplicationController
 			session[:username] = username
 			session[:user_id] = user.id
 			session[:postsubmitted] = user.postsubmitted
+			time = Time.new
+			today = time.wday
+			session[:today] = today
 
+			#make sure to reset date
 			theVal = user.postsubmitted
 			newVal = theVal.split()
 			if newVal[1] == Time.now.to_s.slice(0, 10)
 				if newVal[0] == "true"
-					#hide dat button!
 					@message = "thanks for completing the thing"
 					session[:daylimit] = true
 				end
