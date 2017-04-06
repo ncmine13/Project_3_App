@@ -9,18 +9,18 @@
 		<a href="/home/logout">Log out!</a>
 		<h1>Welcome home, <%= @username %>.</h1>
 		<div class="week">
-			<div class="day"><h2>Monday</h2><input type="checkbox" class="check"/>
+			<div class="day"><h2>Monday</h2>
 			<input type="hidden" name="dayValue" value="0">
 			</div>
-			<div class="day"><h2>Tuesday</h2><input type="checkbox" class="check"/></div>
-			<div class="day"><h2>Wednesday</h2><input type="checkbox" class="check"/></div>
-			<div class="day"><h2>Thursday</h2><input type="checkbox" class="check"/></div>
-			<div class="day"><h2>Friday</h2><input type="checkbox" class="check"/></div>
-			<div class="day"><h2>Saturday</h2><input type="checkbox" class="check"/></div>
-			<div class="day"><h2>Sunday</h2><input type="checkbox" class="check"/></div>
+			<div class="day"><h2>Tuesday</h2></div>
+			<div class="day"><h2>Wednesday</h2></div>
+			<div class="day"><h2>Thursday</h2></div>
+			<div class="day"><h2>Friday</h2></div>
+			<div class="day"><h2>Saturday</h2></div>
+			<div class="day"><h2>Sunday</h2></div>
 		</div>
 		<a href="/home"><button class="checkIn">Check in</button></a>
-		<button class="test">Clickme</button>
+		<!-- if @day_limit is true, add class hidden to the button -->
 		<script src="/js/app/app.js"></script>
 	</body>
 </html>

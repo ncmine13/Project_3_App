@@ -40,6 +40,16 @@ class MoodController < ApplicationController
 		@mood.user_id = session[:user_id]
 		@mood.save
 		@mood.to_json
+
+		@user = User.find_by(id: session[:user_id])
+		postsubmitted = @user.postsubmitted
+		other = postsubmitted.split()
+		other[0] = "true"
+		newString = other*" "
+		@user.postsubmitted = newString
+		@user.save
+		@user.to_json
+
 	end
 
 end

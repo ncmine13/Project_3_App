@@ -8,7 +8,9 @@ class HomeController < ApplicationController
 	get '/cal' do
 		if session[:logged_in]
 			@username = session[:username]
+			@day_limit = session[:daylimit]
 			erb :cal
+
 		else
 			@message = "you are not logged in"
 			erb :login
@@ -21,6 +23,7 @@ class HomeController < ApplicationController
 
 	get '/login' do
 		erb :login
+
 	end
 
 	get '/logout' do
@@ -37,6 +40,11 @@ class HomeController < ApplicationController
 		user = User.new
 		user.username = params["username"]
 		user.password = params["password"]
+		time = Time.now.to_s.slice(0, 10)
+		submitted = "false "
+		theVal = submitted + time
+		user.postsubmitted = theVal
+
 		user.save
 		redirect '/home/login'
 
@@ -51,10 +59,20 @@ class HomeController < ApplicationController
 			session[:logged_in] = true
 			session[:username] = username
 			session[:user_id] = user.id
-			#query database for postSubmitted value
-			binding.pry
-			p session
+			session[:postsubmitted] = user.postsubmitted
 
+			theVal = user.postsubmitted
+			newVal = theVal.split()
+			if newVal[1] == Time.now.to_s.slice(0, 10)
+				if newVal[0] == "true"
+					#hide dat button!
+					@message = "thanks for completing the thing"
+					session[:daylimit] = true
+				end
+			else
+				session[:daylimit] = false
+			end
+			p session
 			redirect '/home/cal'
 		else
 			@message = "login unsuccessful"

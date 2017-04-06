@@ -41,15 +41,18 @@ var MainComponent = React.createClass({
 		console.log('gonna make an ajax call about now')
 		var state = this.state;
 		var self = this;
-		request.post('http://localhost:9393/mood')
+		$('.checkIn').addClass('hidden')
+		request.post('/mood')
 		.type('form')
 		.send(self.state)
 		.end(function(err, data){
 			console.log(data.body)
 			window.location = '/home/cal'
 		})
+
 	},
 	componentWillUpdate: function(){
+		console.log(this.state.finished, ' state .finished')
 		this.state.finished ? this.postInformation() : false
 	},
 	render: function(){
