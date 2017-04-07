@@ -1,15 +1,63 @@
 body {
-  background-color: #F9F2D7;
-  color: #113F40;
+  background-color: #0C393F;
+  color: #F9F2D7;
   font-family: 'Comfortaa', cursive;
 }
 body h1 {
   font-size: 50px;
   text-align: center;
   margin-top: 7%;
-  margin-bottom: 70px;
+  margin-bottom: 50px;
   width: 80%;
   margin-left: 10%;
+  line-height: 70px;
+  letter-spacing: 1.5px;
+  font-weight: lighter;
+}
+body .formDiv {
+  background-color: #EAB37F;
+  height: 400px;
+  width: 40%;
+  margin-left: 30%;
+  border-radius: 4px;
+  box-shadow: 1px 2px 10px rgba(1, 4, 29, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body .formDiv h3 {
+  color: #A62606;
+}
+body .formDiv .regLogInput {
+  background-color: #E7A05F;
+  margin: 15px 0px;
+  width: 250px;
+  height: 40px;
+  padding: 10px;
+  font-size: 25px;
+  border-width: 1px;
+  border-radius: 3px;
+  font-family: 'Comfortaa', cursive;
+}
+body .formDiv .logReg {
+  border: none;
+  background: #E27108;
+  background-image: -webkit-linear-gradient(top, #de7921, #c2540b);
+  background-image: -moz-linear-gradient(top, #de7921, #c2540b);
+  background-image: -ms-linear-gradient(top, #de7921, #c2540b);
+  background-image: -o-linear-gradient(top, #de7921, #c2540b);
+  background-image: linear-gradient(to bottom, #de7921, #c2540b);
+  margin: 15px 0px;
+  width: 272px;
+  border-width: 1px;
+  border-radius: 3px;
+  font-size: 30px;
+  color: #F9F2D7;
+  padding: 10px;
+  box-shadow: 1px 1px 4px rgba(99, 111, 119, 0.6);
+  font-family: 'Spinnaker', sans-serif;
+  text-shadow: 1px 1px 1px rgba(106, 59, 15, 0.98);
 }
 body .threeWords {
   display: flex;
@@ -20,11 +68,12 @@ body .word {
   width: 25%;
   margin: 20px;
   padding: 20px;
-  margin-top: 50px;
+  margin-top: 30px;
   height: 55px;
-  border-radius: 10px;
+  border-radius: 5px;
   font-size: 50px;
   text-align: center;
+  border-width: 1px;
 }
 body .nextDiv {
   float: right;
@@ -32,16 +81,17 @@ body .nextDiv {
   margin-bottom: 50px;
 }
 body .next {
-  background-color: #113F40;
-  color: #CEF1F1;
+  background-color: #E27108;
+  color: #F9F2D7;
   border: none;
   width: 200px;
   height: 100px;
   margin-top: 50px;
-  border-radius: 10px;
+  border-radius: 5px;
   font-size: 65px;
-  box-shadow: 0px 1px 3px rgba(99, 111, 119, 0.88);
+  box-shadow: 3px 3px 4px rgba(35, 46, 51, 0.89);
   letter-spacing: 2.5px;
+  text-shadow: 1px 1px 1px rgba(106, 59, 15, 0.98);
 }
 body .shortAnswer {
   width: 80%;
@@ -73,8 +123,8 @@ body .week .day {
   margin: 10px;
   width: 150px;
   height: 85px;
-  border-radius: 5px;
-  background-color: #113F40;
+  border-radius: 3px;
+  background-color: #E89E58;
 }
 body .week .day h2 {
   font-size: 20px;
@@ -90,7 +140,7 @@ body .checkInDiv {
   justify-content: center;
 }
 body .checkIn {
-  background-color: #B4A454;
+  background-color: #C08210;
   color: #113F40;
   width: 200px;
   border: none;
@@ -101,7 +151,7 @@ body .checkIn {
   box-shadow: 0px 1px 3px rgba(99, 111, 119, 0.88);
 }
 body .test {
-  background-color: #B4A454;
+  background-color: #C08210;
   color: #113F40;
   width: 200px;
   border: none;
@@ -118,14 +168,49 @@ body button:hover {
   box-shadow: 1px 2px 3px rgba(99, 111, 119, 0.88);
 }
 body .dayH2 {
-  color: gray;
+  color: #6F797B;
 }
 body .today {
-  color: #B4A454;
+  color: #A62606;
 }
 body .message {
   font-size: 30px;
   margin-top: 0px;
+  margin-left: 2.5%;
+}
+body a {
+  text-decoration: none;
+  color: #F9F2D7;
+}
+body .shortAnswer {
+  border-radius: 4px;
+  margin-top: 20px;
+}
+body .submit {
+  background-color: #E27108;
+  color: #F9F2D7;
+  border: none;
+  width: 235px;
+  height: 120px;
+  margin-top: 50px;
+  border-radius: 5px;
+  font-size: 50px;
+  box-shadow: 3px 3px 4px rgba(35, 46, 51, 0.89);
+  letter-spacing: 2.5px;
+  text-shadow: 1px 1px 1px rgba(106, 59, 15, 0.98);
+  line-height: 40px;
+}
+body input {
+  color: #2F8297;
+}
+body .thing {
+  width: 57%;
+  height: 50px;
+  margin-left: 21%;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  font-size: 35px;
+  padding: 10px;
 }
 @media screen and (max-width: 800px) {
   body .week {
@@ -166,5 +251,8 @@ body .message {
     font-size: 45px;
     box-shadow: 0px 1px 3px rgba(99, 111, 119, 0.88);
     letter-spacing: 3px;
+  }
+  body .formDiv {
+    width: 300px;
   }
 }

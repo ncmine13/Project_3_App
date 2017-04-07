@@ -1,8 +1,16 @@
 <%= @message %>
 
-<h1>This is the register page</h1>
-<form action="/home/register" method="POST">
-	<input type="text" name="username" placeholder="Username"/>
-	<input type="password" name="password" placeholder="Password"/>
-	<button class="logReg">Register!</button>
-</form>
+<h1>Welcome. Please register.</h1>
+<div class="formDiv">
+	<form action="/home/register" method="POST">
+	<div>
+		<input class="regLogInput" type="text" name="username" placeholder="Username"/>
+	</div>
+	<div>
+		<input class="regLogInput" type="password" name="password" placeholder="Password"/>
+	</div>
+	<div>
+		<button class="logReg">Register!</button>
+	</div>
+	</form>
+</div>

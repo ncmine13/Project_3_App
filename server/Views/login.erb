@@ -1,8 +1,19 @@
-<%= @message %>
 
-<h1>This is the login page</h1>
-<form action="/home/login" method="POST">
-	<input type="text" name="username" placeholder="Username"/>
-	<input type="password" name="password" placeholder="Password"/>
-	<button class="logReg">Log in!</button>
-</form>
+
+
+<h1>Welcome. Log in.</h1>
+
+<div class="formDiv">
+	<h3><%= @message %></h3>
+		<form action="/home/login" method="POST">
+		<div>
+			<input class="regLogInput" type="text" name="username" placeholder="Username"/>
+		</div>
+		<div>
+			<input class="regLogInput" type="password" name="password" placeholder="Password"/>
+		</div>
+		<div>
+			<button class="logReg">Let's go</button>
+		</div>
+		</form>
+</div>

@@ -237,7 +237,7 @@ var FifthScreen = React.createClass({
 		return (
 			<div>
 				<h1>On a scale of 1 to 10, how confident do you feel?</h1>
-				<input type="number" onChange={this.handleConfidenceInput} name="confidence" value={this.state.condfidence}/>
+				<input className="number" type="number" onChange={this.handleConfidenceInput} name="confidence" value={this.state.condfidence}/>
 				<div className="nextDiv"><button className="next" onClick={this.handleConfidence}>Next</button></div>
 			</div>
 		)
@@ -262,7 +262,7 @@ var SixthScreen = React.createClass({
 		return (
 			<div>
 				<h1>On a scale of 1 to 10, how satisfied do you feel?</h1>
-				<input type="number" onChange={this.handleSatisfactionInput} name="satisfaction" value={this.state.satisfaction}/>
+				<input className="number" type="number" onChange={this.handleSatisfactionInput} name="satisfaction" value={this.state.satisfaction}/>
 				<div className="nextDiv"><button className="next" onClick={this.handleSatisfaction}>Next</button></div>
 			</div>
 		)
@@ -287,7 +287,7 @@ var SeventhScreen = React.createClass({
 		return (
 			<div>
 				<h1>On a scale of 1 to 10, how stressed out do you feel?</h1>
-				<input type="number" onChange={this.handleStressInput} name="stress" value={this.state.stress}/>
+				<input className="number" type="number" onChange={this.handleStressInput} name="stress" value={this.state.stress}/>
 				<div className="nextDiv"><button className="next" onClick={this.handleStress}>Next</button></div>
 			</div>
 		)
@@ -311,7 +311,7 @@ var EighthScreen = React.createClass({
 		return (
 			<div>
 				<h1>On a scale of 1 to 10, how sad do you feel?</h1>
-				<input type="number" onChange={this.handleSadnessInput} name="sadness" value={this.state.sadness}/>
+				<input className="number" type="number" onChange={this.handleSadnessInput} name="sadness" value={this.state.sadness}/>
 				<div className="nextDiv"><button className="next" onClick={this.handleSadness}>Next</button></div>
 			</div>
 		)
@@ -335,7 +335,7 @@ var NinthScreen = React.createClass({
 		return (
 			<div>
 				<h1>On a scale of 1 to 10, how angry do you feel?</h1>
-				<input type="number" onChange={this.handleAngerInput} name="anger" value={this.state.anger}/>
+				<input className="number" type="number" onChange={this.handleAngerInput} name="anger" value={this.state.anger}/>
 				<div className="nextDiv"><button className="next" onClick={this.handleAnger}>Next</button></div>
 			</div>
 		)
@@ -359,7 +359,7 @@ var TenthScreen = React.createClass({
 		return (
 			<div>
 				<h1>On a scale of 1 to 10, how happy do you feel?</h1>
-				<input type="number" onChange={this.handleHappinessInput} name="happiness" value={this.state.happiness}/>
+				<input className="number" type="number" onChange={this.handleHappinessInput} name="happiness" value={this.state.happiness}/>
 				<div className="nextDiv"><button className="next" onClick={this.handleHappiness}>Next</button></div>
 			</div>
 		)
@@ -383,7 +383,7 @@ var EleventhScreen = React.createClass({
 		return (
 			<div>
 				<h1>On a scale of 1 to 10, how funny do you feel?</h1>
-				<input type="number" onChange={this.handleFunnyInput} name="funny" value={this.state.funny}/>
+				<input className="number" type="number" onChange={this.handleFunnyInput} name="funny" value={this.state.funny}/>
 				<div className="nextDiv"><button className="next" onClick={this.handleFunny}>Next</button></div>
 			</div>
 		)
@@ -411,10 +411,10 @@ var TwelfthScreen = React.createClass({
 				<h1>
 					Write three things you like about yourself.
 				</h1>
-					<input onChange={this.handleThingInput} name="thing1" type="text" value={this.state.thing1}/>
-					<input onChange={this.handleThingInput} name="thing2" type="text" value={this.state.thing2}/>
-					<input onChange={this.handleThingInput} name="thing3" type="text" value={this.state.thing3}/>
-					<div><button className="submit" onClick={this.handleThing}>Submit answers</button></div>
+					<input className="thing" onChange={this.handleThingInput} name="thing1" type="text" value={this.state.thing1}/>
+					<input className="thing" onChange={this.handleThingInput} name="thing2" type="text" value={this.state.thing2}/>
+					<input className="thing" onChange={this.handleThingInput} name="thing3" type="text" value={this.state.thing3}/>
+					<div><button className="submit" onClick={this.handleThing}>Submit.</button></div>
 			</div>
 		)
 	}

@@ -12,7 +12,7 @@ class HomeController < ApplicationController
 		username = session[:username]
 		user = User.find_by(username: username)
 		if user.postsubmitted.split()[0] == "true"
-			@message = "See you tomorrow!"
+			@message = "Great job. See you tomorrow!"
 			@button = false
 		end
 
@@ -92,7 +92,7 @@ class HomeController < ApplicationController
 			p session
 			redirect '/home/cal'
 		else
-			@message = "login unsuccessful"
+			@message = "Login unsuccessful. Try again!"
 			erb :login
 		end
 	end

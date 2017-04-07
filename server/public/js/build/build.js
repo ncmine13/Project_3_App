@@ -274,7 +274,7 @@ var FifthScreen = React.createClass({
 				null,
 				'On a scale of 1 to 10, how confident do you feel?'
 			),
-			React.createElement('input', { type: 'number', onChange: this.handleConfidenceInput, name: 'confidence', value: this.state.condfidence }),
+			React.createElement('input', { className: 'number', type: 'number', onChange: this.handleConfidenceInput, name: 'confidence', value: this.state.condfidence }),
 			React.createElement(
 				'div',
 				{ className: 'nextDiv' },
@@ -313,7 +313,7 @@ var SixthScreen = React.createClass({
 				null,
 				'On a scale of 1 to 10, how satisfied do you feel?'
 			),
-			React.createElement('input', { type: 'number', onChange: this.handleSatisfactionInput, name: 'satisfaction', value: this.state.satisfaction }),
+			React.createElement('input', { className: 'number', type: 'number', onChange: this.handleSatisfactionInput, name: 'satisfaction', value: this.state.satisfaction }),
 			React.createElement(
 				'div',
 				{ className: 'nextDiv' },
@@ -352,7 +352,7 @@ var SeventhScreen = React.createClass({
 				null,
 				'On a scale of 1 to 10, how stressed out do you feel?'
 			),
-			React.createElement('input', { type: 'number', onChange: this.handleStressInput, name: 'stress', value: this.state.stress }),
+			React.createElement('input', { className: 'number', type: 'number', onChange: this.handleStressInput, name: 'stress', value: this.state.stress }),
 			React.createElement(
 				'div',
 				{ className: 'nextDiv' },
@@ -390,7 +390,7 @@ var EighthScreen = React.createClass({
 				null,
 				'On a scale of 1 to 10, how sad do you feel?'
 			),
-			React.createElement('input', { type: 'number', onChange: this.handleSadnessInput, name: 'sadness', value: this.state.sadness }),
+			React.createElement('input', { className: 'number', type: 'number', onChange: this.handleSadnessInput, name: 'sadness', value: this.state.sadness }),
 			React.createElement(
 				'div',
 				{ className: 'nextDiv' },
@@ -428,7 +428,7 @@ var NinthScreen = React.createClass({
 				null,
 				'On a scale of 1 to 10, how angry do you feel?'
 			),
-			React.createElement('input', { type: 'number', onChange: this.handleAngerInput, name: 'anger', value: this.state.anger }),
+			React.createElement('input', { className: 'number', type: 'number', onChange: this.handleAngerInput, name: 'anger', value: this.state.anger }),
 			React.createElement(
 				'div',
 				{ className: 'nextDiv' },
@@ -466,7 +466,7 @@ var TenthScreen = React.createClass({
 				null,
 				'On a scale of 1 to 10, how happy do you feel?'
 			),
-			React.createElement('input', { type: 'number', onChange: this.handleHappinessInput, name: 'happiness', value: this.state.happiness }),
+			React.createElement('input', { className: 'number', type: 'number', onChange: this.handleHappinessInput, name: 'happiness', value: this.state.happiness }),
 			React.createElement(
 				'div',
 				{ className: 'nextDiv' },
@@ -504,7 +504,7 @@ var EleventhScreen = React.createClass({
 				null,
 				'On a scale of 1 to 10, how funny do you feel?'
 			),
-			React.createElement('input', { type: 'number', onChange: this.handleFunnyInput, name: 'funny', value: this.state.funny }),
+			React.createElement('input', { className: 'number', type: 'number', onChange: this.handleFunnyInput, name: 'funny', value: this.state.funny }),
 			React.createElement(
 				'div',
 				{ className: 'nextDiv' },
@@ -544,16 +544,16 @@ var TwelfthScreen = React.createClass({
 				null,
 				'Write three things you like about yourself.'
 			),
-			React.createElement('input', { onChange: this.handleThingInput, name: 'thing1', type: 'text', value: this.state.thing1 }),
-			React.createElement('input', { onChange: this.handleThingInput, name: 'thing2', type: 'text', value: this.state.thing2 }),
-			React.createElement('input', { onChange: this.handleThingInput, name: 'thing3', type: 'text', value: this.state.thing3 }),
+			React.createElement('input', { className: 'thing', onChange: this.handleThingInput, name: 'thing1', type: 'text', value: this.state.thing1 }),
+			React.createElement('input', { className: 'thing', onChange: this.handleThingInput, name: 'thing2', type: 'text', value: this.state.thing2 }),
+			React.createElement('input', { className: 'thing', onChange: this.handleThingInput, name: 'thing3', type: 'text', value: this.state.thing3 }),
 			React.createElement(
 				'div',
 				null,
 				React.createElement(
 					'button',
 					{ className: 'submit', onClick: this.handleThing },
-					'Submit answers'
+					'Submit.'
 				)
 			)
 		);

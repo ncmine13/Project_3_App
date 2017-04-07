@@ -8,7 +8,7 @@
 		<!-- only show button if you haven't checked in yet today -->
 		<a href="/home/logout">Log out!</a>
 		<h1>Welcome home, <%= @username %>.</h1>
-		<h1 class="message">Great job. <%= @message %> </h1>
+
 		<div class="week">
 			<div class="day"><h2 class="dayH2">Monday</h2>
 			<input type="hidden" name="dayValue" value="1"></div>
@@ -32,6 +32,9 @@
 		</a>
 		</div>
 		<% end %>
+		<div class="checkInDiv">
+		<h3 class="message"> <%= @message %> </h3>
+		</div>
 		<!-- if @day_limit is true, add class hidden to the button -->
 		<script src="/js/app/app.js"></script>
 	</body>
