@@ -18,8 +18,8 @@ Can user only access "check in" button once a day?
 
 
 Wireframes:
-![1] (./wireframes/Wireframe1.jpg)
+![alt text] (./wireframes/wireframe1.png)
 
-![2] (./wireframes/Wireframe2.jpg)
+![alt text] (./wireframes/wireframe2.png)
 
-![3] (./wireframes/Wireframe3.jpg)
+![alt text] (./wireframes/wireframe3.png)
