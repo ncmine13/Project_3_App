@@ -212,6 +212,14 @@ body .thing {
   font-size: 35px;
   padding: 10px;
 }
+body .number {
+  width: 100px;
+  margin-left: 45%;
+  height: 40px;
+  border-radius: 3px;
+  font-size: 30px;
+  text-align: center;
+}
 @media screen and (max-width: 800px) {
   body .week {
     flex-direction: column;
