@@ -1,10 +1,9 @@
 @newBlue: #0C393F;
 @otherNewBlue: #2F8297;
+@blue: rgba(12, 57, 63, 0.6);
 @paleOrange: #EAB37F;
 @otherOrange: #E89E58;
 @lastOrange: #E27108;
-
-
 
 @yellow: #F9F2D7;
 @blueText: #113F40;
@@ -19,21 +18,26 @@ body {
 	h1 {
 		font-size: 50px;
 	    text-align: center;
-	    margin-top: 7%;
-	    margin-bottom: 50px;
+		margin-top: 9%;
+	    margin-bottom: 15px;
 	    width: 80%;
 	    margin-left: 10%;
 		line-height: 70px;
 		letter-spacing: 1.5px;
 		font-weight: lighter;
 	}
+
+	.login {
+		margin-bottom: -30px;
+		margin-top: 9%;
+	}
 	.formDiv {
-		background-color: @paleOrange;
+		// background-color: @paleOrange;
 		height: 400px;
 		width: 40%;
 		margin-left: 30%;
 		border-radius: 4px;
-		box-shadow: 1px 2px 10px rgba(1, 4, 29, 0.4);
+		// box-shadow: 1px 2px 10px rgba(1, 4, 29, 0.4);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -43,35 +47,84 @@ body {
 			color: #A62606;
 		}
 		.regLogInput {
-			background-color: #E7A05F;
-			margin: 15px 0px;
-			width: 250px;
-			height: 40px;
-			padding: 10px;
-			font-size: 25px;
-			border-width: 1px;
-			border-radius: 3px;
-			font-family: 'Comfortaa', cursive;
+			background-color: rgba(35, 75, 84, 0.6);
+		    margin: 10px 0px;
+		    width: 346px;
+		    height: 30px;
+		    padding: 10px;
+		    font-size: 21px;
+		    border-width: 1px;
+		    border-radius: 3px;
+		    font-family: 'Comfortaa', cursive;
+		    border: 1px solid #19747C;
+		    color: #F9F2D7;
+		}
+		.nameInput {
+			background-color: rgba(35, 75, 84, 0.6);
+		    margin: 15px 0px;
+		    width: 155px;
+		    height: 30px;
+		    padding: 10px;
+		    font-size: 21px;
+		    border-width: 1px;
+		    border-radius: 3px;
+		    font-family: 'Comfortaa', cursive;
+		    border: 1px solid #19747C;
+		    color: #F9F2D7;
+		    margin-right: 10px;
+			margin-bottom: 10px;
+
 		}
 		.logReg {
 			border: none;
-			background: #E27108;
-			background-image: -webkit-linear-gradient(top, #de7921, #c2540b);
-			background-image: -moz-linear-gradient(top, #de7921, #c2540b);
-			background-image: -ms-linear-gradient(top, #de7921, #c2540b);
-			background-image: -o-linear-gradient(top, #de7921, #c2540b);
-			background-image: linear-gradient(to bottom, #de7921, #c2540b);
-			margin: 15px 0px;
-			width: 272px;
-			border-width: 1px;
-			border-radius: 3px;
-			font-size: 30px;
-			color: @yellow;
-			padding: 10px;
-			box-shadow: 1px 1px 4px rgba(99, 111, 119, 0.60);
-			font-family: 'Spinnaker', sans-serif;
-			text-shadow: 1px 1px 1px rgba(106, 59, 15, 0.98);
+		    background: #195a5c;
+		    background-image: -webkit-linear-gradient(top, #195a5c, #124445);
+		    background-image: -moz-linear-gradient(top, #195a5c, #124445);
+		    background-image: -ms-linear-gradient(top, #195a5c, #124445);
+		    background-image: -o-linear-gradient(top, #195a5c, #124445);
+		    background-image: linear-gradient(to bottom, #195a5c, #124445);
+		    margin: 15px 0px;
+		    width: 368px;
+		    border-width: 1px;
+		    border-radius: 2px;
+		    font-size: 30px;
+		    color: #F9F2D7;
+		    padding: 10px;
+		    box-shadow: 1px 1px 4px rgba(3, 37, 42, 0.86);
+		    font-family: 'Spinnaker', sans-serif;
+		    text-shadow: 0px 0px 1px rgba(106, 59, 15, 0.98);
+			letter-spacing: 2px;
 		}
+
+		.navButton {
+			border: none;
+		    background: #195a5c;
+		    background-image: -webkit-linear-gradient(top, #195a5c, #124445);
+		    background-image: -moz-linear-gradient(top, #195a5c, #124445);
+		    background-image: -ms-linear-gradient(top, #195a5c, #124445);
+		    background-image: -o-linear-gradient(top, #195a5c, #124445);
+		    background-image: linear-gradient(to bottom, #195a5c, #124445);
+			margin: 0px 0px;
+			width: 368px;
+			border-width: 1px;
+			border-radius: 2px;
+			font-size: 20px;
+		    color: #F9F2D7;
+		    padding: 10px;
+		    box-shadow: 1px 1px 4px rgba(3, 37, 42, 0.86);
+		    font-family: 'Spinnaker', sans-serif;
+		    text-shadow: 0px 0px 1px rgba(106, 59, 15, 0.98);
+			letter-spacing: 2px;
+		}
+		.buttonDiv {
+			// margin-left: 30%;
+		}
+		a {
+			margin-left: 0px;
+		}
+	}
+	.registerDiv {
+		margin-top: -35px;
 	}
 	.threeWords {
 		display: flex;
@@ -193,7 +246,7 @@ body {
 	.message {
 		font-size: 30px;
     	margin-top: 0px;
-		margin-left: 2.5%;
+		margin-left: 0px;
 	}
 	a {
 		text-decoration: none;
@@ -237,6 +290,24 @@ body {
 		border-radius: 3px;
 		font-size: 30px;
 		text-align: center;
+	}
+	.homeh1 {
+		margin-bottom: 55px;
+	}
+	footer {
+		font-size: 13px;
+		position: absolute;
+		bottom: 30px;
+		color: #F8FAEA;
+		font-weight: bold;
+		text-shadow: 0.5px 2px 0 rgba(0,0,0,0.2);
+		letter-spacing: 2px;
+	}
+	.arch {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 
 	@media screen and (max-width: 800px) {

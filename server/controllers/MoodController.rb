@@ -50,7 +50,6 @@ class MoodController < ApplicationController
 		@user.postsubmitted = newString
 		@user.save
 		@user.to_json
-
 	end
 
 end
