@@ -1,6 +1,20 @@
 class HomeController < ApplicationController
 
 	#route is /home
+	# if @day_limit == true
+	# 	@button = false
+	# 	@message = "Great job. See you tomorrow!"
+	# 	erb :cal
+	# elsif @day_limit == false && user.postsubmitted.split()[0] == "true"
+	# 	@button = false
+	# 	@message = "Great job. See you tomorrow!"
+	# 	erb :cal
+	# elsif @day_limit == false && user.postsubmitted.split()[0] == "false"
+	# 	@button = true
+	# 	@message = ""
+	# 	erb :cal
+	# end
+
 	get ('/') do
 		erb :home
 	end
@@ -9,22 +23,26 @@ class HomeController < ApplicationController
 	get '/cal' do
 		# binding.pry
 		# @button = false
+		# || user.postsubmitted.split()[0] == "true"
 		@today = session[:today]
 		username = session[:username]
 		user = User.find_by(username: username)
 		if session[:logged_in]
 			@username = session[:username]
 			@day_limit = session[:daylimit]
-			if @day_limit == true || user.postsubmitted.split()[0] == "true"
-				@button = false
-				@message = "Great job. See you tomorrow!"
-				erb :cal
-			elsif @day_limit == false
+			theVal = user.postsubmitted
+			newVal = theVal.split()
+			if newVal[1] == Time.now.to_s.slice(0, 10)
+				if newVal[0] == "true"
+					@message = "Great job. See you tomorrow!"
+					session[:daylimit] = true
+					erb :cal
+				end
+			else
+				session[:daylimit] = false
 				@button = true
-				@message = ""
 				erb :cal
 			end
-
 		else
 			@message = "you are not logged in"
 			erb :login
@@ -87,17 +105,7 @@ class HomeController < ApplicationController
 			session[:daylimit] = false
 
 			#make sure to reset date
-			theVal = user.postsubmitted
-			newVal = theVal.split()
 
-			if newVal[1] == Time.now.to_s.slice(0, 10)
-				if newVal[0] == "true"
-					@message = "thanks for completing the thing"
-					session[:daylimit] = true
-				end
-			else
-				session[:daylimit] = false
-			end
 			p session
 			redirect '/home/cal'
 		else
