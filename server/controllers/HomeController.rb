@@ -1,53 +1,38 @@
 class HomeController < ApplicationController
 
 	#route is /home
-	# if @day_limit == true
-	# 	@button = false
-	# 	@message = "Great job. See you tomorrow!"
-	# 	erb :cal
-	# elsif @day_limit == false && user.postsubmitted.split()[0] == "true"
-	# 	@button = false
-	# 	@message = "Great job. See you tomorrow!"
-	# 	erb :cal
-	# elsif @day_limit == false && user.postsubmitted.split()[0] == "false"
-	# 	@button = true
-	# 	@message = ""
-	# 	erb :cal
-	# end
-
 	get ('/') do
 		erb :home
 	end
 	#route is /home/cal
-	#not working at the end of the route ugh, because session object isnt updated
 	get '/cal' do
-		# binding.pry
-		# @button = false
-		# || user.postsubmitted.split()[0] == "true"
 		@today = session[:today]
 		username = session[:username]
 		user = User.find_by(username: username)
 		if session[:logged_in]
-			@username = session[:username]
-			@day_limit = session[:daylimit]
 			theVal = user.postsubmitted
 			newVal = theVal.split()
 			if newVal[1] == Time.now.to_s.slice(0, 10)
 				if newVal[0] == "true"
 					@message = "Great job. See you tomorrow!"
+					@username = session[:username]
 					session[:daylimit] = true
+					erb :cal
+				else
+					@button = true
+					@username = session[:username]
 					erb :cal
 				end
 			else
 				session[:daylimit] = false
 				@button = true
+				@username = session[:username]
 				erb :cal
 			end
 		else
 			@message = "you are not logged in"
 			erb :login
 		end
-		# binding.pry
 	end
 
 	get '/register' do
@@ -69,7 +54,6 @@ class HomeController < ApplicationController
 	end
 
 	post '/register' do
-		#add logic to make sure people have to make unique usernames
 		username = params[:username]
 		userExists = User.find_by(username: username)
 
