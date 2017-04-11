@@ -12,7 +12,7 @@ var MainComponent = React.createClass({
 
 	getInitialState: function () {
 		return { loggedIn: true, username: '', word1: '', word2: '', word3: '', worst: '', best: '', worry: '',
-			confidence: 0, satisfaction: 0, stress: 0, sadness: 0, anger: 0, happiness: 0, funny: 0, thing1: '', thing2: '', thing3: '',
+			confidence: 0, satisfaction: 0, stress: 0, sadness: 0, anger: 0, happiness: 0, playful: 0, thing1: '', thing2: '', thing3: '',
 			page: '', finished: false };
 	},
 	firstPageInfo: function (page, word) {
@@ -484,15 +484,15 @@ var EleventhScreen = React.createClass({
 	displayName: 'EleventhScreen',
 
 	getInitialState: function () {
-		return { page: 'pageTen', funny: '' };
+		return { page: 'pageTen', playful: '' };
 	},
-	handleFunnyInput: function (e) {
+	handlePlayfulInput: function (e) {
 		var state = this.state;
-		state.funny = e.target.value;
+		state.playful = e.target.value;
 		this.setState(state);
 	},
-	handleFunny: function () {
-		var obj = { funny: this.state.funny };
+	handlePlayful: function () {
+		var obj = { playful: this.state.playful };
 		this.props.mostInfo('pageEleven', obj);
 	},
 	render: function () {
@@ -502,15 +502,15 @@ var EleventhScreen = React.createClass({
 			React.createElement(
 				'h1',
 				null,
-				'On a scale of 1 to 10, how funny do you feel?'
+				'On a scale of 1 to 10, how playful do you feel?'
 			),
-			React.createElement('input', { className: 'number', type: 'number', onChange: this.handleFunnyInput, name: 'funny', value: this.state.funny }),
+			React.createElement('input', { className: 'number', type: 'number', onChange: this.handlePlayfulInput, name: 'playful', value: this.state.playful }),
 			React.createElement(
 				'div',
 				{ className: 'nextDiv' },
 				React.createElement(
 					'button',
-					{ className: 'next', onClick: this.handleFunny },
+					{ className: 'next', onClick: this.handlePlayful },
 					'Next'
 				)
 			)

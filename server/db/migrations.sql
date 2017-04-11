@@ -2,7 +2,7 @@
 
 \c moodtracker;
 
-CREATE TABLE users (id SERIAL PRIMARY KEY, username varchar(255), password_digest varchar(255), postSubmitted varchar(30));
+CREATE TABLE users (id SERIAL PRIMARY KEY, username varchar(255), password_digest varchar(255), postSubmitted varchar(30), first varchar(255), last varchar(255));
 
 CREATE TABLE moods
 	(id SERIAL PRIMARY KEY,
@@ -19,7 +19,7 @@ CREATE TABLE moods
 	sadness INT,
 	anger INT,
 	happiness INT,
-	funny INT,
+	playful INT,
 
 	thing1 varchar(255),
 	thing2 varchar(255),

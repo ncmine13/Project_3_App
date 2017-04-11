@@ -33,7 +33,7 @@ class MoodController < ApplicationController
 		@mood.sadness = params[:sadness]
 		@mood.anger = params[:anger]
 		@mood.happiness = params[:happiness]
-		@mood.funny = params[:funny]
+		@mood.playful = params[:playful]
 		@mood.thing1 = params["thing1"]
 		@mood.thing2 = params["thing2"]
 		@mood.thing3 = params["thing3"]
