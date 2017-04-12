@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<a href="/home/logout">Log out!</a>
+		<h1 class="homeh1">Welcome home, <%= @name %>.</h1>
+
+		<div class="arch">
+			<div class="week">
+				<div class="day"><h2 class="dayH2">Monday</h2>
+				<input type="hidden" name="dayValue" value="1"></div>
+				<div class="day"><h2 class="dayH2">Tuesday</h2>
+				<input type="hidden" name="dayValue" value="2"></div>
+				<div class="day"><h2 class="dayH2">Wednesday</h2>
+				<input type="hidden" name="dayValue" value="3"></div>
+				<div class="day"><h2 class="dayH2">Thursday</h2>
+				<input type="hidden" name="dayValue" value="4"></div>
+				<div class="day"><h2 class="dayH2">Friday</h2>
+				<input type="hidden" name="dayValue" value="5"></div>
+				<div class="day"><h2 class="dayH2">Saturday</h2>
+				<input type="hidden" name="dayValue" value="6"></div>
+				<div class="day"><h2 class="dayH2">Sunday</h2>
+				<input type="hidden" name="dayValue" value="0"></div>
+			</div>
+			<% if @button %>
+				<div class="checkInDiv">
+				<a href="/home">
+				<button class="checkIn">Check in</button>
+				</a>
+				</div>
+			<% end %>
+			<div class="checkInDiv">
+				<h3 class="message"> <%= @message %> </h3>
+			</div>
+			<footer>
+				Naomi Mine <span> | </span> General Assembly<span> | </span> 2017
+			</footer>
+		</div>
+		<script src="/js/scripts/app.js"></script>
+	</body>
+</html>
