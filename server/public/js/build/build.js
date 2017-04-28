@@ -3,9 +3,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var request = require('superagent');
 
-//store everything in main component states. make ajax call from here. submit on final component, which will call the ajax request in maincomponent
-//clicking next set      s state
-//boolean/text value stating what page you're on
 var MainComponent = React.createClass({
 	displayName: 'MainComponent',
 
@@ -40,7 +37,7 @@ var MainComponent = React.createClass({
 		this.setState(state);
 	},
 	postInformation: function () {
-		console.log('gonna make an ajax call about now');
+		// console.log('gonna make an ajax call about now')
 		var state = this.state;
 		var self = this;
 		$('.checkIn').addClass('hidden');
@@ -80,8 +77,40 @@ var MainComponent = React.createClass({
 			case 'pageEleven':
 				return React.createElement(TwelfthScreen, { thingInfo: this.thingInfo });
 			default:
-				return React.createElement(FirstScreen, { firstPageInfo: this.firstPageInfo });
+				return React.createElement(
+					'div',
+					null,
+					React.createElement(FirstScreen, null),
+					React.createElement(ButtonComponent, { firstPageInfo: this.firstPageInfo })
+				);
 		}
+	}
+});
+
+var ButtonComponent = React.createClass({
+	displayName: 'ButtonComponent',
+
+	getInitialState: function () {
+		return { page: '' };
+	},
+	handlePage: function () {
+		// console.log("clicckkkee")
+		state = this.state;
+		state.page = 'pageOne';
+		this.setState(state);
+		this.props.firstPageInfo('pageOne', this.state);
+		console.log(this.props);
+	},
+	render: function () {
+		return React.createElement(
+			'div',
+			{ className: 'nextDiv' },
+			React.createElement(
+				'button',
+				{ className: 'next', onClick: this.handlePage },
+				'Next'
+			)
+		);
 	}
 });
 
@@ -96,21 +125,18 @@ var FirstScreen = React.createClass({
 		state[e.target.name] = e.target.value;
 		this.setState(state);
 	},
-	handlePage: function () {
-		state = this.state;
-		state.page = 'pageOne';
-		this.setState(state);
-		this.props.firstPageInfo('pageOne', this.state);
-		console.log(this.props);
-	},
 	render: function () {
 		return React.createElement(
 			'div',
 			null,
 			React.createElement(
-				'h1',
-				null,
-				'What are three words to describe how you\'re feeling today?'
+				'div',
+				{ className: 'testing' },
+				React.createElement(
+					'h1',
+					null,
+					'What are three words to describe how you\'re feeling today?'
+				)
 			),
 			React.createElement(
 				'div',
@@ -121,15 +147,6 @@ var FirstScreen = React.createClass({
 				React.createElement('br', null),
 				React.createElement('input', { className: 'word', onChange: this.handleWord, name: 'word3', type: 'text', value: this.state.word3 }),
 				React.createElement('br', null)
-			),
-			React.createElement(
-				'div',
-				{ className: 'nextDiv' },
-				React.createElement(
-					'button',
-					{ className: 'next', onClick: this.handlePage },
-					'Next'
-				)
 			)
 		);
 	}
@@ -155,18 +172,22 @@ var SecondScreen = React.createClass({
 			'div',
 			null,
 			React.createElement(
-				'h1',
-				null,
-				'What bummed you out today?'
-			),
-			React.createElement('input', { className: 'shortAnswer', onChange: this.handleWorstInput, name: 'worst', value: this.state.worst }),
-			React.createElement(
 				'div',
-				{ className: 'nextDiv' },
+				null,
 				React.createElement(
-					'button',
-					{ className: 'next', onClick: this.handleWorst, name: 'worst' },
-					'Next'
+					'h1',
+					null,
+					'What bummed you out today?'
+				),
+				React.createElement('input', { className: 'shortAnswer', onChange: this.handleWorstInput, name: 'worst', value: this.state.worst }),
+				React.createElement(
+					'div',
+					{ className: 'nextDiv' },
+					React.createElement(
+						'button',
+						{ className: 'next', onClick: this.handleWorst, name: 'worst' },
+						'Next'
+					)
 				)
 			)
 		);
@@ -193,18 +214,22 @@ var ThirdScreen = React.createClass({
 			'div',
 			null,
 			React.createElement(
-				'h1',
-				null,
-				' Describe the best thing that happened to you today. '
-			),
-			React.createElement('input', { className: 'shortAnswer', onChange: this.handleBestInput, name: 'best', value: this.state.best }),
-			React.createElement(
 				'div',
-				{ className: 'nextDiv' },
+				null,
 				React.createElement(
-					'button',
-					{ className: 'next', onClick: this.handleBest },
-					'Next'
+					'h1',
+					null,
+					' Describe the best thing that happened to you today. '
+				),
+				React.createElement('input', { className: 'shortAnswer', onChange: this.handleBestInput, name: 'best', value: this.state.best }),
+				React.createElement(
+					'div',
+					{ className: 'nextDiv' },
+					React.createElement(
+						'button',
+						{ className: 'next', onClick: this.handleBest },
+						'Next'
+					)
 				)
 			)
 		);
@@ -231,18 +256,22 @@ var FourthScreen = React.createClass({
 			'div',
 			null,
 			React.createElement(
-				'h1',
-				null,
-				'What is one thing you\u2019re worried about? '
-			),
-			React.createElement('input', { className: 'shortAnswer', onChange: this.handleWorryInput, name: 'worry', value: this.state.worry }),
-			React.createElement(
 				'div',
-				{ className: 'nextDiv' },
+				null,
 				React.createElement(
-					'button',
-					{ className: 'next', onClick: this.handleWorry },
-					'Next'
+					'h1',
+					null,
+					'What is one thing you\u2019re worried about? '
+				),
+				React.createElement('input', { className: 'shortAnswer', onChange: this.handleWorryInput, name: 'worry', value: this.state.worry }),
+				React.createElement(
+					'div',
+					{ className: 'nextDiv' },
+					React.createElement(
+						'button',
+						{ className: 'next', onClick: this.handleWorry },
+						'Next'
+					)
 				)
 			)
 		);
@@ -255,7 +284,6 @@ var FifthScreen = React.createClass({
 	getInitialState: function () {
 		return { page: 'pageFour', confidence: 0 };
 	},
-	//add limitation on number of digits, i.e. make sure the number is from one to ten
 	handleConfidenceInput: function (e) {
 		var state = this.state;
 		state.confidence = e.target.value;
@@ -270,18 +298,22 @@ var FifthScreen = React.createClass({
 			'div',
 			null,
 			React.createElement(
-				'h1',
-				null,
-				'On a scale of 1 to 10, how confident do you feel?'
-			),
-			React.createElement('input', { className: 'number', type: 'number', onChange: this.handleConfidenceInput, name: 'confidence', value: this.state.condfidence }),
-			React.createElement(
 				'div',
-				{ className: 'nextDiv' },
+				null,
 				React.createElement(
-					'button',
-					{ className: 'next', onClick: this.handleConfidence },
-					'Next'
+					'h1',
+					null,
+					'On a scale of 1 to 10, how confident do you feel?'
+				),
+				React.createElement('input', { className: 'number', type: 'number', onChange: this.handleConfidenceInput, name: 'confidence', value: this.state.condfidence }),
+				React.createElement(
+					'div',
+					{ className: 'nextDiv' },
+					React.createElement(
+						'button',
+						{ className: 'next', onClick: this.handleConfidence },
+						'Next'
+					)
 				)
 			)
 		);
@@ -309,18 +341,22 @@ var SixthScreen = React.createClass({
 			'div',
 			null,
 			React.createElement(
-				'h1',
-				null,
-				'On a scale of 1 to 10, how satisfied do you feel?'
-			),
-			React.createElement('input', { className: 'number', type: 'number', onChange: this.handleSatisfactionInput, name: 'satisfaction', value: this.state.satisfaction }),
-			React.createElement(
 				'div',
-				{ className: 'nextDiv' },
+				null,
 				React.createElement(
-					'button',
-					{ className: 'next', onClick: this.handleSatisfaction },
-					'Next'
+					'h1',
+					null,
+					'On a scale of 1 to 10, how satisfied do you feel?'
+				),
+				React.createElement('input', { className: 'number', type: 'number', onChange: this.handleSatisfactionInput, name: 'satisfaction', value: this.state.satisfaction }),
+				React.createElement(
+					'div',
+					{ className: 'nextDiv' },
+					React.createElement(
+						'button',
+						{ className: 'next', onClick: this.handleSatisfaction },
+						'Next'
+					)
 				)
 			)
 		);

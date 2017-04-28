@@ -14,18 +14,22 @@ body h1 {
   letter-spacing: 1.5px;
   font-weight: lighter;
 }
-
+body .testing {
+  display: block;
+}
 body .list {
   list-style: none;
-  float: left;
-  width: 10%;
-  margin-top: 15px;
+  width: 6%;
   border: 3px solid black;
+  float: left;
 }
 body .active {
   border: 3px solid orange;
 }
-
+body .listDiv {
+  height: 30px;
+  margin-top: 30px;
+}
 body .login {
   margin-bottom: -30px;
   margin-top: 9%;
@@ -279,7 +283,7 @@ body .number {
   text-align: center;
   margin-top: 20px;
   border-width: 0.5px;
-  color: #F9F2D7;
+  color: #0C393F;
 }
 body .homeh1 {
   margin-bottom: 55px;

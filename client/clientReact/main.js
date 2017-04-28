@@ -2,10 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var request = require('superagent');
 
-
-//store everything in main component states. make ajax call from here. submit on final component, which will call the ajax request in maincomponent
-//clicking next set      s state
-//boolean/text value stating what page you're on
 var MainComponent = React.createClass({
 
 	getInitialState: function(){
@@ -38,7 +34,7 @@ var MainComponent = React.createClass({
 		this.setState(state);
 	},
 	postInformation: function(){
-		console.log('gonna make an ajax call about now')
+		// console.log('gonna make an ajax call about now')
 		var state = this.state;
 		var self = this;
 		$('.checkIn').addClass('hidden')
@@ -105,11 +101,34 @@ var MainComponent = React.createClass({
 				)
 			default:
 				return (
-					<FirstScreen firstPageInfo={this.firstPageInfo}/>
+					<div>
+						<FirstScreen />
+						<ButtonComponent firstPageInfo={this.firstPageInfo}/>
+					</div>
 				)
 		}
 	}
 });
+
+var ButtonComponent = React.createClass({
+	getInitialState: function(){
+		return {page: ''}
+	},
+	handlePage: function(){
+		// console.log("clicckkkee")
+		state = this.state;
+		state.page = 'pageOne'
+		this.setState(state);
+		this.props.firstPageInfo('pageOne', this.state)
+		console.log(this.props)
+	},
+	render: function(){
+		return (
+			<div className="nextDiv"><button className="next" onClick={this.handlePage}>Next</button></div>
+		)
+	}
+})
+
 
 var FirstScreen = React.createClass({
 	getInitialState: function(){
@@ -120,19 +139,14 @@ var FirstScreen = React.createClass({
 		state[e.target.name] = e.target.value
 		this.setState(state);
 	},
-	handlePage: function(){
-		state = this.state;
-		state.page = 'pageOne'
-		this.setState(state);
-		this.props.firstPageInfo('pageOne', this.state)
-		console.log(this.props)
-	},
 	render: function(){
 		return (
 			<div>
-				<h1>
-					What are three words to describe how you're feeling today?
-				</h1>
+				<div className="testing">
+					<h1>
+						What are three words to describe how you're feeling today?
+					</h1>
+				</div>
 				<div className="threeWords">
 					<input className="word" onChange={this.handleWord} name="word1" type="text" value={this.state.word1}/>
 					<br/>
@@ -141,7 +155,6 @@ var FirstScreen = React.createClass({
 					<input className="word" onChange={this.handleWord} name="word3" type="text" value={this.state.word3}/>
 					<br/>
 				</div>
-				<div className="nextDiv"><button className="next" onClick={this.handlePage}>Next</button></div>
 			</div>
 		)
 	}
@@ -162,10 +175,13 @@ var SecondScreen = React.createClass({
 	},
 	render: function(){
 		return (
+
 			<div>
-				<h1>What bummed you out today?</h1>
-				<input className="shortAnswer" onChange={this.handleWorstInput} name="worst" value={this.state.worst}/>
-				<div className="nextDiv"><button className="next" onClick={this.handleWorst} name="worst">Next</button></div>
+				<div>
+					<h1>What bummed you out today?</h1>
+					<input className="shortAnswer" onChange={this.handleWorstInput} name="worst" value={this.state.worst}/>
+					<div className="nextDiv"><button className="next" onClick={this.handleWorst} name="worst">Next</button></div>
+				</div>
 			</div>
 		)
 	}
@@ -187,9 +203,11 @@ var ThirdScreen = React.createClass({
 	render: function(){
 		return (
 			<div>
-				<h1> Describe the best thing that happened to you today. </h1>
-				<input className="shortAnswer" onChange={this.handleBestInput} name="best" value={this.state.best}/>
-				<div className="nextDiv"><button className="next" onClick={this.handleBest}>Next</button></div>
+				<div>
+					<h1> Describe the best thing that happened to you today. </h1>
+					<input className="shortAnswer" onChange={this.handleBestInput} name="best" value={this.state.best}/>
+					<div className="nextDiv"><button className="next" onClick={this.handleBest}>Next</button></div>
+				</div>
 			</div>
 		)
 	}
@@ -211,9 +229,11 @@ var FourthScreen = React.createClass({
 	render: function(){
 		return (
 			<div>
-				<h1>What is one thing you’re worried about? </h1>
-				<input className="shortAnswer" onChange={this.handleWorryInput} name="worry" value={this.state.worry}/>
-				<div className="nextDiv"><button className="next" onClick={this.handleWorry}>Next</button></div>
+				<div>
+					<h1>What is one thing you’re worried about? </h1>
+					<input className="shortAnswer" onChange={this.handleWorryInput} name="worry" value={this.state.worry}/>
+					<div className="nextDiv"><button className="next" onClick={this.handleWorry}>Next</button></div>
+				</div>
 			</div>
 		)
 	}
@@ -223,7 +243,6 @@ var FifthScreen = React.createClass({
 	getInitialState: function(){
 		return {page: 'pageFour', confidence: 0}
 	},
-	//add limitation on number of digits, i.e. make sure the number is from one to ten
 	handleConfidenceInput: function(e){
 		var state = this.state;
 		state.confidence = e.target.value;
@@ -236,9 +255,11 @@ var FifthScreen = React.createClass({
 	render: function(){
 		return (
 			<div>
-				<h1>On a scale of 1 to 10, how confident do you feel?</h1>
-				<input className="number" type="number" onChange={this.handleConfidenceInput} name="confidence" value={this.state.condfidence}/>
-				<div className="nextDiv"><button className="next" onClick={this.handleConfidence}>Next</button></div>
+				<div>
+					<h1>On a scale of 1 to 10, how confident do you feel?</h1>
+					<input className="number" type="number" onChange={this.handleConfidenceInput} name="confidence" value={this.state.condfidence}/>
+					<div className="nextDiv"><button className="next" onClick={this.handleConfidence}>Next</button></div>
+				</div>
 			</div>
 		)
 	}
@@ -261,9 +282,11 @@ var SixthScreen = React.createClass({
 	render: function(){
 		return (
 			<div>
-				<h1>On a scale of 1 to 10, how satisfied do you feel?</h1>
-				<input className="number" type="number" onChange={this.handleSatisfactionInput} name="satisfaction" value={this.state.satisfaction}/>
-				<div className="nextDiv"><button className="next" onClick={this.handleSatisfaction}>Next</button></div>
+				<div>
+					<h1>On a scale of 1 to 10, how satisfied do you feel?</h1>
+					<input className="number" type="number" onChange={this.handleSatisfactionInput} name="satisfaction" value={this.state.satisfaction}/>
+					<div className="nextDiv"><button className="next" onClick={this.handleSatisfaction}>Next</button></div>
+				</div>
 			</div>
 		)
 	}
