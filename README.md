@@ -9,6 +9,8 @@ To add:
 
 -progress bar and back button on React route
 
+-improve clarity of variable names 
+
 -username and password specifications
 
 -more succinct styling to home page, including check marks on completed days
