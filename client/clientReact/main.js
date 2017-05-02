@@ -34,7 +34,6 @@ var MainComponent = React.createClass({
 		this.setState(state);
 	},
 	postInformation: function(){
-		// console.log('gonna make an ajax call about now')
 		var state = this.state;
 		var self = this;
 		$('.checkIn').addClass('hidden')
