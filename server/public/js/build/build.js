@@ -579,9 +579,13 @@ var TwelfthScreen = React.createClass({
 				null,
 				'Write three things you like about yourself.'
 			),
-			React.createElement('input', { className: 'thing', onChange: this.handleThingInput, name: 'thing1', type: 'text', value: this.state.thing1 }),
-			React.createElement('input', { className: 'thing', onChange: this.handleThingInput, name: 'thing2', type: 'text', value: this.state.thing2 }),
-			React.createElement('input', { className: 'thing', onChange: this.handleThingInput, name: 'thing3', type: 'text', value: this.state.thing3 }),
+			React.createElement(
+				'div',
+				{ className: 'thingsYouLike' },
+				React.createElement('input', { className: 'thing', onChange: this.handleThingInput, name: 'thing1', type: 'text', value: this.state.thing1 }),
+				React.createElement('input', { className: 'thing', onChange: this.handleThingInput, name: 'thing2', type: 'text', value: this.state.thing2 }),
+				React.createElement('input', { className: 'thing', onChange: this.handleThingInput, name: 'thing3', type: 'text', value: this.state.thing3 })
+			),
 			React.createElement(
 				'div',
 				null,

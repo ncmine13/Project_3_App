@@ -433,10 +433,12 @@ var TwelfthScreen = React.createClass({
 				<h1>
 					Write three things you like about yourself.
 				</h1>
+				<div className="thingsYouLike">
 					<input className="thing" onChange={this.handleThingInput} name="thing1" type="text" value={this.state.thing1}/>
 					<input className="thing" onChange={this.handleThingInput} name="thing2" type="text" value={this.state.thing2}/>
 					<input className="thing" onChange={this.handleThingInput} name="thing3" type="text" value={this.state.thing3}/>
-					<div><button className="submit" onClick={this.handleThing}>Submit.</button></div>
+				</div>
+				<div><button className="submit" onClick={this.handleThing}>Submit.</button></div>
 			</div>
 		)
 	}

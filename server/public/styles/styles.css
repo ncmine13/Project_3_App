@@ -88,9 +88,9 @@ body .regLogDiv .registerDiv form .regLogInput:nth-child(1) {
 body .regLogDiv .registerDiv form .logReg {
   width: 252px;
 }
-body a {
-  margin: 20px;
+body .logOut {
   display: block;
+  margin: 20px;
 }
 body .testing {
   display: block;
@@ -439,6 +439,17 @@ body .arch {
     font-size: 30px;
     box-shadow: 0px 1px 3px rgba(99, 111, 119, 0.88);
     letter-spacing: 3px;
+  }
+  body #container div .thingsYouLike .thing {
+    margin-left: 0px;
+    width: 80%;
+  }
+  body #container div .submit {
+    font-size: 30px;
+    padding: 10px 20px;
+    height: auto;
+    width: auto;
+    margin-left: auto;
   }
   body footer {
     font-size: 11px;
