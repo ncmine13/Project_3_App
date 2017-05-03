@@ -329,6 +329,83 @@ body {
 	}
 
 	@media screen and (max-width: 800px) {
+		.regLogDiv {
+			display: flex;
+    		flex-direction: column;
+    		align-items: center;
+
+			h1 {
+				margin-bottom: 0px;
+				margin-left: 0px;
+			}
+			.formDiv {
+				height: 100%;
+				width: auto;
+				margin: 0%;
+
+				form {
+					display: flex;
+				    flex-direction: column;
+				    align-items: center;
+				    input {
+				    	width: auto;
+				    	}
+				    div {
+				    	.logReg {
+					    	width: 182px;
+					    	font-size: 20px;
+					    	letter-spacing: 1px;
+						}
+				    }
+
+				    .logReg {
+				    	width: 182px;
+				    	font-size: 20px;
+				    	letter-spacing: 1px;
+						}
+					}
+				    	
+				.buttonDiv {
+					margin-bottom: 100px;
+					.navButton {
+						font-size: 17px;
+						width: auto;
+						letter-spacing: 1px;
+
+					}
+				}
+			}
+			.registerDiv {
+				form {
+
+					div {
+						display: flex;
+    					flex-direction: column;
+    					.nameInput {
+    						    margin-right: 0px;
+    					}
+    					.nameInput:nth-child(1) {
+				    	margin-bottom: 0px;
+				    	}
+				    	.nameInput:nth-child(2) {
+				    	margin-bottom: 5px;
+				    	}
+					}
+					.regLogInput:nth-child(1) {
+						margin-bottom: 5px;
+					}
+					.logReg {
+						width: 252px;
+					}
+				}
+			}
+		}
+
+		footer {
+			font-size: 11px;
+    		position: relative;
+		}
+
 		.week {
 			flex-direction: column;
 			align-items: center;
@@ -341,7 +418,6 @@ body {
 			font-size: 20px;
 			margin-bottom: 30px;
 			line-height: normal;
-			margin-bottom: 30px;
 		}
 		.message {
 			margin-bottom: 10px;
@@ -371,9 +447,6 @@ body {
 				box-shadow: 0px 1px 3px rgba(99, 111, 119, 0.88);
 				letter-spacing: 3px;
 			}
-		}
-		.formDiv {
-			width: 300px;
 		}
 	}
 

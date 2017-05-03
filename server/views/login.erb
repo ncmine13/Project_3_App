@@ -1,22 +1,25 @@
-<h1 class="login">Welcome. Log in.</h1>
-
-<div class="formDiv">
-	<h3><%= @message %></h3>
-	<form action="/home/login" method="POST">
-		<div>
-			<input class="regLogInput" type="text" name="username" placeholder="Username"/>
-		</div>
-		<div>
-			<input class="regLogInput" type="password" name="password" placeholder="Password"/>
-		</div>
-		<div>
-			<button class="logReg">Let's go</button>
-		</div>
-	</form>
-	<div class="buttonDiv">
-		<a href="/home/register"><button class="navButton">Need an account?</button></a>
+<div class="regLogDiv">
+	<div class="login">
+		<h1>Welcome. Log in.</h1>
 	</div>
-	<footer>
-		Naomi Mine <span> | </span> General Assembly<span> | </span> 2017
-	</footer>
+	<div class="formDiv">
+		<h3><%= @message %></h3>
+		<form action="/home/login" method="POST">
+			<div>
+				<input class="regLogInput" type="text" name="username" placeholder="Username"/>
+			</div>
+			<div>
+				<input class="regLogInput" type="password" name="password" placeholder="Password"/>
+			</div>
+			<div>
+				<button class="logReg">Let's go</button>
+			</div>
+		</form>
+		<div class="buttonDiv">
+			<a href="/home/register"><button class="navButton">Need an account?</button></a>
+		</div>
+		<footer>
+			Naomi Mine <span> | </span> General Assembly<span> | </span> 2017
+		</footer>
+	</div>
 </div>
