@@ -2,6 +2,7 @@ body {
   background-color: #0C393F;
   color: #F9F2D7;
   font-family: 'Comfortaa', cursive;
+  margin: 0px;
 }
 body h1 {
   font-size: 50px;
@@ -22,20 +23,27 @@ body .regLogDiv .login {
   margin-top: 0;
 }
 body .regLogDiv .formDiv {
-  width: 70%;
+  width: 40%;
   height: auto;
-  margin: 0%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 body .regLogDiv .formDiv form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 70%;
 }
 body .regLogDiv .formDiv form input {
-  width: auto;
+  width: 100%;
+  text-align: center;
 }
 body .regLogDiv .formDiv form div {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 body .regLogDiv .formDiv form div .logReg {
   width: 100%;
@@ -49,9 +57,12 @@ body .regLogDiv .formDiv form .logReg {
 }
 body .regLogDiv .formDiv .buttonDiv {
   margin-bottom: 100px;
-  width: 100%;
+  width: 70%;
   display: flex;
   justify-content: center;
+}
+body .regLogDiv .formDiv .buttonDiv a {
+  width: 100%;
 }
 body .regLogDiv .formDiv .buttonDiv .navButton {
   font-size: 17px;
@@ -77,6 +88,10 @@ body .regLogDiv .registerDiv form .regLogInput:nth-child(1) {
 body .regLogDiv .registerDiv form .logReg {
   width: 252px;
 }
+body a {
+  margin: 20px;
+  display: block;
+}
 body .testing {
   display: block;
 }
@@ -93,19 +108,20 @@ body .listDiv {
   height: 30px;
   margin-top: 30px;
 }
+body #container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body #container div .nextDiv {
+  float: right;
+  margin-right: 30px;
+  margin-bottom: 30px;
+}
 body .login {
   margin-bottom: -30px;
   margin-top: 9%;
-}
-body .formDiv {
-  height: 400px;
-  width: 40%;
-  margin-left: 30%;
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 body .formDiv h3 {
   color: #A62606;
@@ -115,7 +131,7 @@ body .formDiv .regLogInput {
   margin: 10px 0px;
   width: 346px;
   height: 30px;
-  padding: 10px;
+  padding: 10px 0px;
   font-size: 21px;
   border-width: 1px;
   border-radius: 3px;
@@ -128,7 +144,7 @@ body .formDiv .nameInput {
   margin: 15px 0px;
   width: 155px;
   height: 30px;
-  padding: 10px;
+  padding: 10px 0px;
   font-size: 21px;
   border-width: 1px;
   border-radius: 3px;
@@ -201,9 +217,9 @@ body .word {
   border-width: 1px;
 }
 body .nextDiv {
-  position: absolute;
-  right: 40px;
-  bottom: 40px;
+  /*		position: absolute;
+		right: 40px;
+		bottom: 40px;*/
 }
 body .next {
   background-color: #E27108;
@@ -220,7 +236,6 @@ body .next {
 }
 body .shortAnswer {
   width: 80%;
-  margin-left: 8%;
   padding: 25px;
   margin-top: 50px;
   height: 70px;
@@ -357,7 +372,8 @@ body footer {
   font-weight: bold;
   text-shadow: 0.5px 2px 0 rgba(0, 0, 0, 0.2);
   letter-spacing: 2px;
-  margin-bottom: 30px;
+  /*		position: absolute;*/
+  bottom: 40px;
 }
 body .arch {
   display: flex;
@@ -366,23 +382,67 @@ body .arch {
   align-items: center;
 }
 @media screen and (max-width: 800px) {
-  body .regLogDiv {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
   body .regLogDiv h1 {
-    margin-bottom: 20px;
-    margin-left: 0px;
-    width: 100%;
+    margin: 40px 0px;
+  }
+  body .regLogDiv .formDiv {
+    width: 85%;
   }
   body .regLogDiv .formDiv h3 {
     font-size: 12px;
     margin-top: 20px;
   }
+  body .regLogDiv .formDiv input {
+    font-size: 14px;
+  }
+  body .regLogDiv .formDiv .buttonDiv .navButton {
+    font-size: 13px;
+  }
+  body .arch {
+    margin-bottom: 40px;
+  }
+  body .arch .checkIn {
+    font-size: 20px;
+    padding: 20px;
+    height: auto;
+  }
+  body #container {
+    width: 90%;
+  }
+  body #container div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  body #container div h1 {
+    font-size: 15px;
+  }
+  body #container div input {
+    font-size: 20px;
+    height: auto;
+    padding: 20px;
+  }
+  body #container div .number {
+    margin-left: 0%;
+  }
+  body #container div .nextDiv {
+    margin-right: 0px;
+    margin-bottom: 0px;
+  }
+  body #container div .nextDiv .next {
+    color: #CEF1F1;
+    border: none;
+    width: 130px;
+    height: 65px;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-size: 30px;
+    box-shadow: 0px 1px 3px rgba(99, 111, 119, 0.88);
+    letter-spacing: 3px;
+  }
   body footer {
     font-size: 11px;
-    position: relative;
+    margin-bottom: 30px;
   }
   body .week {
     flex-direction: column;
@@ -410,20 +470,5 @@ body .arch {
     width: 50%;
     height: 20px;
     font-size: 25px;
-  }
-  body .nextDiv {
-    right: 5%;
-    bottom: 5%;
-  }
-  body .nextDiv .next {
-    color: #CEF1F1;
-    border: none;
-    width: 130px;
-    height: 65px;
-    margin-top: 5px;
-    border-radius: 5px;
-    font-size: 35px;
-    box-shadow: 0px 1px 3px rgba(99, 111, 119, 0.88);
-    letter-spacing: 3px;
   }
 }
