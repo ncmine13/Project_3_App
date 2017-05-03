@@ -14,6 +14,46 @@ body h1 {
   letter-spacing: 1.5px;
   font-weight: lighter;
 }
+body .regLogDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body .regLogDiv .formDiv {
+  width: 70%;
+  height: auto;
+  margin: 0%;
+}
+body .regLogDiv .formDiv form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body .regLogDiv .formDiv form input {
+  width: auto;
+}
+body .regLogDiv .formDiv form div {
+  width: 100%;
+}
+body .regLogDiv .formDiv form div .logReg {
+  width: 100%;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+body .regLogDiv .formDiv form .logReg {
+  width: 182px;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+body .regLogDiv .formDiv .buttonDiv {
+  margin-bottom: 100px;
+  width: 100%;
+}
+body .regLogDiv .formDiv .buttonDiv .navButton {
+  font-size: 17px;
+  width: 100%;
+  letter-spacing: 1px;
+}
 body .testing {
   display: block;
 }
@@ -310,12 +350,16 @@ body .arch {
     align-items: center;
   }
   body .regLogDiv h1 {
-    margin-bottom: 0px;
+    margin-bottom: 20px;
     margin-left: 0px;
+    width: 100%;
+  }
+  body .regLogDiv .login {
+    width: 100%;
   }
   body .regLogDiv .formDiv {
-    height: 100%;
-    width: auto;
+    width: 70%;
+    height: auto;
     margin: 0%;
   }
   body .regLogDiv .formDiv form {
@@ -326,8 +370,11 @@ body .arch {
   body .regLogDiv .formDiv form input {
     width: auto;
   }
+  body .regLogDiv .formDiv form div {
+    width: 100%;
+  }
   body .regLogDiv .formDiv form div .logReg {
-    width: 182px;
+    width: 100%;
     font-size: 20px;
     letter-spacing: 1px;
   }
@@ -338,10 +385,11 @@ body .arch {
   }
   body .regLogDiv .formDiv .buttonDiv {
     margin-bottom: 100px;
+    width: 100%;
   }
   body .regLogDiv .formDiv .buttonDiv .navButton {
     font-size: 17px;
-    width: auto;
+    width: 100%;
     letter-spacing: 1px;
   }
   body .regLogDiv .registerDiv form div {
