@@ -8,7 +8,6 @@ body h1 {
   font-size: 50px;
   text-align: center;
   margin-top: 9%;
-  margin-bottom: 25px;
   line-height: 70px;
   letter-spacing: 1.5px;
   font-weight: lighter;
@@ -23,7 +22,7 @@ body .regLogDiv .login {
   margin-top: 0;
 }
 body .regLogDiv .formDiv {
-  width: 40%;
+  width: 50%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -71,16 +70,17 @@ body .regLogDiv .formDiv .buttonDiv .navButton {
 }
 body .regLogDiv .registerDiv form div {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 body .regLogDiv .registerDiv form div .nameInput {
   margin-right: 0px;
+  margin-bottom: 5px;
 }
 body .regLogDiv .registerDiv form div .nameInput:nth-child(1) {
-  margin-bottom: 0px;
+  margin-right: 5px;
 }
 body .regLogDiv .registerDiv form div .nameInput:nth-child(2) {
-  margin-bottom: 5px;
+  margin-left: 5px;
 }
 body .regLogDiv .registerDiv form .regLogInput:nth-child(1) {
   margin-bottom: 5px;
@@ -114,10 +114,19 @@ body #container {
   flex-direction: column;
   align-items: center;
 }
+body #container div {
+  /*	    	    display: flex;
+    			flex-direction: column;
+   				align-items: center;*/
+}
+body #container div h1 {
+  text-align: center;
+  margin-top: 7%;
+  padding: 0 4%;
+}
 body #container div .nextDiv {
   float: right;
-  margin-right: 30px;
-  margin-bottom: 30px;
+  margin: 50px;
 }
 body .login {
   margin-bottom: -30px;
@@ -227,26 +236,32 @@ body .next {
   border: none;
   width: 200px;
   height: 100px;
-  margin-top: 50px;
   border-radius: 5px;
   font-size: 65px;
   box-shadow: 3px 3px 4px rgba(35, 46, 51, 0.89);
   letter-spacing: 2.5px;
   text-shadow: 1px 1px 1px rgba(106, 59, 15, 0.98);
 }
-body .shortAnswer {
+body .shortAnswerDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body .shortAnswerDiv .shortAnswer {
   width: 80%;
   padding: 25px;
-  margin-top: 50px;
   height: 70px;
   border-radius: 40px;
   font-size: 50px;
   text-align: left;
+  border-radius: 4px;
+  margin-top: 20px;
 }
 body .submit {
   background-color: #113F40;
   color: #CEF1F1;
   margin-left: 67%;
+  margin-bottom: 30px;
   width: 300px;
   height: 200px;
   margin-top: 50px;
@@ -279,6 +294,7 @@ body .checkInDiv {
   flex-direction: row;
   justify-content: center;
   margin-bottom: 30px;
+  text-align: center;
 }
 body .checkIn {
   background-color: #C08210;
@@ -322,10 +338,6 @@ body .message {
 body a {
   text-decoration: none;
   color: #F9F2D7;
-}
-body .shortAnswer {
-  border-radius: 4px;
-  margin-top: 20px;
 }
 body .submit {
   background-color: #E27108;
@@ -372,8 +384,7 @@ body footer {
   font-weight: bold;
   text-shadow: 0.5px 2px 0 rgba(0, 0, 0, 0.2);
   letter-spacing: 2px;
-  /*		position: absolute;*/
-  bottom: 40px;
+  margin-bottom: 30px;
 }
 body .arch {
   display: flex;
@@ -420,14 +431,13 @@ body .arch {
   body #container div input {
     font-size: 20px;
     height: auto;
-    padding: 20px;
+    padding: 15px;
   }
   body #container div .number {
     margin-left: 0%;
   }
   body #container div .nextDiv {
-    margin-right: 0px;
-    margin-bottom: 0px;
+    margin: 10% 0% 5% 40%;
   }
   body #container div .nextDiv .next {
     color: #CEF1F1;
@@ -442,7 +452,8 @@ body .arch {
   }
   body #container div .thingsYouLike .thing {
     margin-left: 0px;
-    width: 80%;
+    width: 100%;
+    padding: 15px;
   }
   body #container div .submit {
     font-size: 30px;
@@ -453,7 +464,6 @@ body .arch {
   }
   body footer {
     font-size: 11px;
-    margin-bottom: 30px;
   }
   body .week {
     flex-direction: column;
@@ -471,6 +481,9 @@ body .arch {
   body .message {
     margin-bottom: 10px;
   }
+  body .number {
+    width: 40px;
+  }
   body .threeWords {
     flex-direction: column;
     align-items: center;
@@ -478,7 +491,7 @@ body .arch {
   body .threeWords .word {
     margin-top: 10px;
     margin-bottom: 0px;
-    width: 50%;
+    width: 70%;
     height: 20px;
     font-size: 25px;
   }
