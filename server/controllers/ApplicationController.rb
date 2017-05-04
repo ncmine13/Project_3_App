@@ -16,7 +16,7 @@ class ApplicationController < Sinatra::Base
 		:password => db.password,
 		:database => DB_NAME,
 		:encoding => 'utf8'
-	# 	)
+		)
 
 	# ActiveRecord::Base.establish_connection(
 	# 	:adapter => 'postgresql',
