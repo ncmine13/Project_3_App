@@ -119,10 +119,14 @@ var FirstScreen = React.createClass({
 	getInitialState: function () {
 		return { page: '', word1: '', word2: '', word3: '' };
 	},
-	handleWord: function (e) {
+	handleWordInput: function (e) {
 		var state = this.state;
 		state[e.target.name] = e.target.value;
 		this.setState(state);
+	},
+	handleWord: function () {
+		var obj = { word1: this.state.word1, word2: this.state.word2, word3: this.state.word3 };
+		this.props.firstPageInfo('pageOne', obj);
 	},
 	render: function () {
 		return React.createElement(
