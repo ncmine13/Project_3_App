@@ -51,7 +51,7 @@ var MainComponent = React.createClass({
 		this.state.finished ? this.postInformation() : false
 	},
 	render: function(){
-		console.log(this.state)
+		console.log("state", this.state)
 
 		switch(this.state.page) {
 			case 'pageOne':
