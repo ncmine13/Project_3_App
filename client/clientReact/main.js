@@ -101,32 +101,13 @@ var MainComponent = React.createClass({
 			default:
 				return (
 					<div>
-						<FirstScreen />
-						<ButtonComponent firstPageInfo={this.firstPageInfo}/>
+						<FirstScreen firstPageInfo={this.firstPageInfo}/>
 					</div>
 				)
 		}
 	}
 });
 
-var ButtonComponent = React.createClass({
-	getInitialState: function(){
-		return {page: ''}
-	},
-	handlePage: function(){
-		// console.log("clicckkkee")
-		state = this.state;
-		state.page = 'pageOne'
-		this.setState(state);
-		this.props.firstPageInfo('pageOne', this.state)
-		console.log(this.props)
-	},
-	render: function(){
-		return (
-			<div className="nextDiv"><button className="next" onClick={this.handlePage}>Next</button></div>
-		)
-	}
-})
 
 
 var FirstScreen = React.createClass({
@@ -151,13 +132,14 @@ var FirstScreen = React.createClass({
 					</h1>
 				</div>
 				<div className="threeWords">
-					<input className="word" onChange={this.handleWord} name="word1" type="text" value={this.state.word1}/>
+					<input className="word" onChange={this.handleWordInput} name="word1" type="text" value={this.state.word1}/>
 					<br/>
-					<input className="word" onChange={this.handleWord} name="word2" type="text" value={this.state.word2}/>
+					<input className="word" onChange={this.handleWordInput} name="word2" type="text" value={this.state.word2}/>
 					<br/>
-					<input className="word" onChange={this.handleWord} name="word3" type="text" value={this.state.word3}/>
+					<input className="word" onChange={this.handleWordInput} name="word3" type="text" value={this.state.word3}/>
 					<br/>
 				</div>
+				<div className="nextDiv"><button className="next" onClick={this.handleWord}>Next</button></div>
 			</div>
 		)
 	}

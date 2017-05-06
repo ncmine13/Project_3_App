@@ -79,37 +79,9 @@ var MainComponent = React.createClass({
 				return React.createElement(
 					'div',
 					null,
-					React.createElement(FirstScreen, null),
-					React.createElement(ButtonComponent, { firstPageInfo: this.firstPageInfo })
+					React.createElement(FirstScreen, { firstPageInfo: this.firstPageInfo })
 				);
 		}
-	}
-});
-
-var ButtonComponent = React.createClass({
-	displayName: 'ButtonComponent',
-
-	getInitialState: function () {
-		return { page: '' };
-	},
-	handlePage: function () {
-		// console.log("clicckkkee")
-		state = this.state;
-		state.page = 'pageOne';
-		this.setState(state);
-		this.props.firstPageInfo('pageOne', this.state);
-		console.log(this.props);
-	},
-	render: function () {
-		return React.createElement(
-			'div',
-			{ className: 'nextDiv' },
-			React.createElement(
-				'button',
-				{ className: 'next', onClick: this.handlePage },
-				'Next'
-			)
-		);
 	}
 });
 
@@ -144,12 +116,21 @@ var FirstScreen = React.createClass({
 			React.createElement(
 				'div',
 				{ className: 'threeWords' },
-				React.createElement('input', { className: 'word', onChange: this.handleWord, name: 'word1', type: 'text', value: this.state.word1 }),
+				React.createElement('input', { className: 'word', onChange: this.handleWordInput, name: 'word1', type: 'text', value: this.state.word1 }),
 				React.createElement('br', null),
-				React.createElement('input', { className: 'word', onChange: this.handleWord, name: 'word2', type: 'text', value: this.state.word2 }),
+				React.createElement('input', { className: 'word', onChange: this.handleWordInput, name: 'word2', type: 'text', value: this.state.word2 }),
 				React.createElement('br', null),
-				React.createElement('input', { className: 'word', onChange: this.handleWord, name: 'word3', type: 'text', value: this.state.word3 }),
+				React.createElement('input', { className: 'word', onChange: this.handleWordInput, name: 'word3', type: 'text', value: this.state.word3 }),
 				React.createElement('br', null)
+			),
+			React.createElement(
+				'div',
+				{ className: 'nextDiv' },
+				React.createElement(
+					'button',
+					{ className: 'next', onClick: this.handleWord },
+					'Next'
+				)
 			)
 		);
 	}
