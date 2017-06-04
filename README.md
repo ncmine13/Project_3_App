@@ -9,11 +9,11 @@ Built with React, Sinatra/Active Record with a Postresql database.
 
 Expansion Plans:
 
-*progress bar and back button on React route
-*improve clarity of variable names 
-*username and password specifications
-*more succinct styling to home page, including check marks on completed days
-*limitation on number entry to ensure the number is between one and ten, or a list of numbers keyed to an associated number value rather than an input field
+* progress bar and back button on React route
+* improve clarity of variable names 
+* username and password specifications
+* more succinct styling to home page, including check marks on completed days
+* limitation on number entry to ensure the number is between one and ten, or a list of numbers keyed to an associated number value rather than an input field
 
 
 Background:
